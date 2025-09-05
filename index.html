@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frugal St*rbucks - Save Money on Your Favorite Drinks</title>
+    <title>Frugal Brew - Save 40-60% on St*rbucks Drinks (September 2025)</title>
     <style>
         * {
             margin: 0;
@@ -261,13 +261,66 @@
             background: #0d5f3a;
             color: white;
         }
+
+        .customization-section {
+            background: #f5f0e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #e8dfd0;
+        }
+
+        .customization-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .customization-btn {
+            padding: 8px;
+            background: white;
+            border: 1px solid #0d5f3a;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .customization-btn:hover {
+            background: #e8dfd0;
+        }
+
+        .customization-btn.selected {
+            background: #0d5f3a;
+            color: white;
+        }
+
+        .free-tag {
+            background: #44b444;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            margin-left: 5px;
+        }
+
+        .pump-info {
+            background: #fff9e6;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            border-left: 3px solid #f4d03f;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>☕ Frugal St*rbucks ☕</h1>
-            <p class="subtitle">Discover how to save 40-60% on your favorite drinks!</p>
+            <h1>☕ Frugal Brew ☕</h1>
+            <p class="subtitle">Save 40-60% on St*rbucks drinks with smart ordering hacks!</p>
+            <p class="subtitle" style="font-size: 0.9em; margin-top: 5px;">Updated September 2025 - All non-dairy milks now FREE!</p>
         </header>
 
         <div class="selector-section">
@@ -317,7 +370,8 @@
 
         <footer class="footer">
             <p>💡 Pro Tip: Join the rewards program for free refills on drip coffee!</p>
-            <p>Prices are estimates based on US averages. Your location may vary.</p>
+            <p>Prices updated September 2025. Your location may vary ±$0.50.</p>
+            <p style="margin-top: 5px; font-size: 0.8em;">Non-dairy milks (oat, almond, soy, coconut) are now FREE as of November 2024!</p>
         </footer>
     </div>
 
@@ -340,43 +394,120 @@
             return name;
         }
 
-        // Drink database with prices for all sizes
+        // Comprehensive drink database with September 2025 pricing and ingredients
+        // Pump patterns: Hot drinks 2/3/4/5 pumps (short/tall/grande/venti)
+        // Iced drinks 3/4/6/7 pumps (tall/grande/venti/trenta)
+        // Espresso shots: Hot 1/1/2/2, Iced 1/2/3
         const drinks = {
+            'pumpkin_spice_latte': {
+                name: 'Pumpkin Spice Latte',
+                category: 'Fall Seasonal',
+                ingredients: {
+                    tall: ['1 shot espresso', '3 pumps pumpkin sauce', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping'],
+                    grande: ['2 shots espresso', '4 pumps pumpkin sauce', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping'],
+                    venti: ['2 shots espresso', '5 pumps pumpkin sauce', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping']
+                },
+                prices: { tall: 6.45, grande: 6.95, venti: 7.45 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf', '½ Decaf'],
+                    temperature: ['Standard (150-170°F)', 'Kids (130°F)', 'Extra Hot (180°F)'],
+                    foam: ['Standard foam', 'No foam', 'Light foam', 'Extra foam'],
+                    pumps: ['Standard pumps', 'Half-sweet', 'Extra pumps (+1-2)']
+                },
+                hack: {
+                    base: 'Caffè Latte',
+                    basePrices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                    additions: [{ item: '2 pumps chai syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Caffè Latte',
+                        'Add 2 pumps chai syrup (+$0.80)',
+                        'Ask for cinnamon dolce topping (FREE)',
+                        'Request whipped cream (FREE)',
+                        'Add nutmeg powder from condiment bar (FREE)',
+                        'Creates similar warm spice profile for less!'
+                    ]
+                }
+            },
+            'pecan_oatmilk_cortado': {
+                name: 'Pecan Oatmilk Cortado',
+                category: 'Fall Seasonal',
+                ingredients: {
+                    tall: ['3 ristretto shots Blonde Espresso', '2 pumps pecan syrup', 'Brown butter notes', 'Steamed oatmilk', 'Pecan crunch topping'],
+                    grande: ['3 ristretto shots Blonde Espresso', '2 pumps pecan syrup', 'Brown butter notes', 'Steamed oatmilk', 'Pecan crunch topping'],
+                    venti: ['Not available in Venti']
+                },
+                prices: { tall: 6.95, grande: 6.95, venti: 0 },
+                customizations: {
+                    roast: ['Blonde Espresso (default)', 'Signature Espresso', 'Decaf'],
+                    temperature: ['Standard', 'Extra Hot'],
+                    pumps: ['Standard (2 pumps)', 'Light (1 pump)', 'Extra (3 pumps)']
+                },
+                hack: {
+                    base: 'Triple Espresso',
+                    basePrices: { tall: 3.85, grande: 3.85, venti: 0 },
+                    steps: [
+                        'Order a triple ristretto Blonde Espresso in an 8oz cup',
+                        'Ask for steamed oatmilk (FREE since Nov 2024)',
+                        'Add toffee nut syrup if available (+$0.80)',
+                        'Or use brown sugar packets from condiment bar (FREE)',
+                        'Request cinnamon topping (FREE)'
+                    ]
+                }
+            },
             'caffe_latte': {
                 name: 'Caffè Latte',
+                category: 'Core Espresso',
                 ingredients: {
-                    tall: ['1 shot espresso', 'Steamed 2% milk', 'Light milk foam'],
-                    grande: ['2 shots espresso', 'Steamed 2% milk', 'Light milk foam'],
-                    venti: ['2 shots espresso (3 for iced)', 'Steamed 2% milk', 'Light milk foam']
+                    tall: ['1 shot espresso', 'Steamed 2% milk', 'Light layer of microfoam'],
+                    grande: ['2 shots espresso', 'Steamed 2% milk', 'Light layer of microfoam'],
+                    venti: ['2 shots espresso', 'Steamed 2% milk', 'Light layer of microfoam']
                 },
-                prices: { tall: 4.65, grande: 5.15, venti: 5.95 },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)', 'Heavy Cream'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf', '½ Decaf'],
+                    temperature: ['Standard (150-170°F)', 'Kids (130°F)', 'Extra Hot (180°F)'],
+                    foam: ['Light foam (default)', 'No foam', 'Extra foam (dry)'],
+                    shots: ['Standard', 'Extra shot (+$1.00)', 'Ristretto', 'Long shot']
+                },
                 hack: {
                     base: 'Americano',
-                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                    basePrices: { tall: 3.95, grande: 4.45, venti: 4.95 },
                     steps: [
                         'Order a [SIZE] Americano',
-                        'Ask for extra steamed milk (FREE - up to 4oz)',
-                        'Or order it in a larger cup and add milk from the condiment bar',
-                        'Add sweetener if desired (honey/sugar packets are FREE)'
+                        'Ask for it with steamed milk instead of water',
+                        'Or get extra room and add steamed milk (FREE up to 4oz)',
+                        'Choose any milk alternative for FREE',
+                        'Saves $1.50 with nearly identical taste!'
                     ]
                 }
             },
             'caramel_macchiato': {
                 name: 'Caramel Macchiato',
+                category: 'Core Espresso',
                 ingredients: {
-                    tall: ['Vanilla syrup (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Caramel drizzle'],
-                    grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Caramel drizzle'],
-                    venti: ['Vanilla syrup (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Caramel drizzle']
+                    tall: ['2 pumps vanilla syrup', '1 shot espresso', 'Steamed 2% milk', 'Caramel drizzle'],
+                    grande: ['3 pumps vanilla syrup', '2 shots espresso', 'Steamed 2% milk', 'Caramel drizzle'],
+                    venti: ['4 pumps vanilla syrup', '2 shots espresso', 'Steamed 2% milk', 'Caramel drizzle']
                 },
-                prices: { tall: 5.25, grande: 5.95, venti: 6.45 },
+                prices: { tall: 5.95, grande: 6.45, venti: 6.95 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf', '½ Decaf'],
+                    temperature: ['Standard', 'Kids', 'Extra Hot'],
+                    style: ['Standard', 'Upside down', 'Extra caramel'],
+                    pumps: ['Standard vanilla', 'Half-sweet', 'Extra vanilla']
+                },
                 hack: {
                     base: 'Caffè Latte',
-                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.95 },
+                    basePrices: { tall: 5.45, grande: 5.95, venti: 6.45 },
                     steps: [
                         'Order a [SIZE] Caffè Latte',
-                        'Ask for 1 pump vanilla (say "light vanilla" = FREE)',
-                        'Ask for caramel drizzle on top (FREE)',
-                        'Request it "upside down" if you want the traditional layering'
+                        'Ask for caramel drizzle on top and bottom (FREE)',
+                        'Request vanilla powder from condiment bar (FREE)',
+                        'Or ask for vanilla in the steamed milk (FREE)',
+                        'Nearly identical for $0.50 less!'
                     ]
                 }
             },
