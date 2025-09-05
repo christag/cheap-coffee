@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frugal St*rbucks - Save Money on Your Favorite Drinks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f0e6 0%, #e8dfd0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d5f3a 0%, #0a4d30 100%);
+            color: #f5f0e6;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .selector-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #0d5f3a;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #0d5f3a;
+            border-radius: 8px;
+            background: #f9f9f9;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        select:hover {
+            background: #f5f0e6;
+            border-color: #0a4d30;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #8b6914;
+            box-shadow: 0 0 5px rgba(139, 105, 20, 0.3);
+        }
+
+        .results-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .drink-name {
+            color: #0d5f3a;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e8dfd0;
+        }
+
+        .ingredients {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #8b6914;
+        }
+
+        .ingredients h3 {
+            color: #8b6914;
+            margin-bottom: 10px;
+        }
+
+        .ingredients ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .ingredients li {
+            padding: 5px 0;
+            color: #333;
+        }
+
+        .ingredients li:before {
+            content: "☕ ";
+            color: #8b6914;
+        }
+
+        .cost-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cost-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .original-cost {
+            background: #ffe8e8;
+            border: 2px solid #d99999;
+        }
+
+        .hack-cost {
+            background: #e8ffe8;
+            border: 2px solid #99d999;
+        }
+
+        .cost-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .cost-amount {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .original-cost .cost-amount {
+            color: #b44444;
+        }
+
+        .hack-cost .cost-amount {
+            color: #44b444;
+        }
+
+        .cost-breakdown {
+            font-size: 0.85em;
+            color: #666;
+            text-align: left;
+            padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .savings-banner {
+            background: linear-gradient(135deg, #44b444 0%, #339933 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .savings-amount {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .hack-instructions {
+            background: #fff9e6;
+            border: 2px solid #f4d03f;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .hack-instructions h3 {
+            color: #8b6914;
+            margin-bottom: 10px;
+        }
+
+        .hack-instructions ol {
+            padding-left: 20px;
+            color: #333;
+        }
+
+        .hack-instructions li {
+            padding: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .size-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .size-btn {
+            flex: 1;
+            padding: 10px;
+            background: #f5f0e6;
+            border: 2px solid #0d5f3a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: #0d5f3a;
+        }
+
+        .size-btn:hover {
+            background: #e8dfd0;
+        }
+
+        .size-btn.active {
+            background: #0d5f3a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Frugal St*rbucks ☕</h1>
+            <p class="subtitle">Discover how to save 40-60% on your favorite drinks!</p>
+        </header>
+
+        <div class="selector-section">
+            <label for="drinkSelect">Choose Your Favorite Drink:</label>
+            <select id="drinkSelect">
+                <option value="">-- Select a drink to see savings --</option>
+            </select>
+        </div>
+
+        <div class="results-section" id="results">
+            <h2 class="drink-name" id="drinkName"></h2>
+            
+            <div class="size-selector">
+                <button class="size-btn active" data-size="tall">Tall (12oz)</button>
+                <button class="size-btn" data-size="grande">Grande (16oz)</button>
+                <button class="size-btn" data-size="venti">Venti (20/24oz)</button>
+            </div>
+
+            <div class="ingredients">
+                <h3>📝 Original Ingredients:</h3>
+                <ul id="ingredientsList"></ul>
+            </div>
+
+            <div class="cost-comparison">
+                <div class="cost-box original-cost">
+                    <div class="cost-label">MENU PRICE</div>
+                    <div class="cost-amount" id="originalPrice">$0.00</div>
+                    <div class="cost-breakdown" id="originalBreakdown"></div>
+                </div>
+                <div class="cost-box hack-cost">
+                    <div class="cost-label">HACK PRICE</div>
+                    <div class="cost-amount" id="hackPrice">$0.00</div>
+                    <div class="cost-breakdown" id="hackBreakdown"></div>
+                </div>
+            </div>
+
+            <div class="savings-banner">
+                💰 You Save: <span class="savings-amount" id="savingsAmount">$0.00</span> 
+                (<span id="savingsPercent">0%</span>)
+            </div>
+
+            <div class="hack-instructions">
+                <h3>🎯 How to Order (The Smart Way):</h3>
+                <ol id="hackSteps"></ol>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>💡 Pro Tip: Join the rewards program for free refills on drip coffee!</p>
+            <p>Prices are estimates based on US averages. Your location may vary.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to replace random vowel with *
+        function censorDrinkName(name) {
+            const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+            let vowelPositions = [];
+            
+            for (let i = 0; i < name.length; i++) {
+                if (vowels.includes(name[i])) {
+                    vowelPositions.push(i);
+                }
+            }
+            
+            if (vowelPositions.length > 0) {
+                const randomIndex = vowelPositions[Math.floor(Math.random() * vowelPositions.length)];
+                return name.substring(0, randomIndex) + '*' + name.substring(randomIndex + 1);
+            }
+            return name;
+        }
+
+        // Drink database with prices for all sizes
+        const drinks = {
+            'caffe_latte': {
+                name: 'Caffè Latte',
+                ingredients: {
+                    tall: ['1 shot espresso', 'Steamed 2% milk', 'Light milk foam'],
+                    grande: ['2 shots espresso', 'Steamed 2% milk', 'Light milk foam'],
+                    venti: ['2 shots espresso (3 for iced)', 'Steamed 2% milk', 'Light milk foam']
+                },
+                prices: { tall: 4.65, grande: 5.15, venti: 5.95 },
+                hack: {
+                    base: 'Americano',
+                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                    steps: [
+                        'Order a [SIZE] Americano',
+                        'Ask for extra steamed milk (FREE - up to 4oz)',
+                        'Or order it in a larger cup and add milk from the condiment bar',
+                        'Add sweetener if desired (honey/sugar packets are FREE)'
+                    ]
+                }
+            },
+            'caramel_macchiato': {
+                name: 'Caramel Macchiato',
+                ingredients: {
+                    tall: ['Vanilla syrup (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Caramel drizzle'],
+                    grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Caramel drizzle'],
+                    venti: ['Vanilla syrup (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Caramel drizzle']
+                },
+                prices: { tall: 5.25, grande: 5.95, venti: 6.45 },
+                hack: {
+                    base: 'Caffè Latte',
+                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.95 },
+                    steps: [
+                        'Order a [SIZE] Caffè Latte',
+                        'Ask for 1 pump vanilla (say "light vanilla" = FREE)',
+                        'Ask for caramel drizzle on top (FREE)',
+                        'Request it "upside down" if you want the traditional layering'
+                    ]
+                }
+            },
+            'white_chocolate_mocha': {
+                name: 'White Chocolate Mocha',
+                ingredients: {
+                    tall: ['White chocolate sauce (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream'],
+                    grande: ['White chocolate sauce (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream'],
+                    venti: ['White chocolate sauce (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream']
+                },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                hack: {
+                    base: 'Americano',
+                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                    additions: [{ item: 'White chocolate syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Americano',
+                        'Add white chocolate syrup (+$0.80)',
+                        'Ask for extra steamed milk (FREE)',
+                        'Top with whipped cream (FREE)',
+                        'Total hack includes syrup charge'
+                    ]
+                }
+            },
+            'vanilla_latte': {
+                name: 'Vanilla Latte',
+                ingredients: {
+                    tall: ['Vanilla syrup (3 pumps)', '1 shot espresso', 'Steamed 2% milk'],
+                    grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Steamed 2% milk'],
+                    venti: ['Vanilla syrup (5 pumps)', '2 shots espresso', 'Steamed 2% milk']
+                },
+                prices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                hack: {
+                    base: 'Americano',
+                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                    steps: [
+                        'Order a [SIZE] Americano',
+                        'Ask for it in a larger cup',
+                        'Add milk from the condiment bar',
+                        'Stir in vanilla-flavored whipped cream (FREE)',
+                        'Or add FREE vanilla powder from condiment station'
+                    ]
+                }
+            },
+            'caffe_mocha': {
+                name: 'Caffè Mocha',
+                ingredients: {
+                    tall: ['Mocha sauce (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream'],
+                    grande: ['Mocha sauce (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream'],
+                    venti: ['Mocha sauce (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream']
+                },
+                prices: { tall: 4.95, grande: 5.45, venti: 5.95 },
+                hack: {
+                    base: 'Americano',
+                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                    additions: [{ item: 'Mocha syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Americano',
+                        'Add mocha syrup (+$0.80)',
+                        'Ask for extra steamed milk (FREE)',
+                        'Top with whipped cream (FREE)',
+                        'Saves you over $1 even with syrup charge!'
+                    ]
+                }
+            },
+            'chai_tea_latte': {
+                name: 'Chai Tea Latte',
+                ingredients: {
+                    tall: ['Chai concentrate', 'Steamed 2% milk', 'Foam topping'],
+                    grande: ['Chai concentrate', 'Steamed 2% milk', 'Foam topping'],
+                    venti: ['Chai concentrate', 'Steamed 2% milk', 'Foam topping']
+                },
+                prices: { tall: 4.95, grande: 5.45, venti: 5.95 },
+                hack: {
+                    base: 'Chai Tea (tea bag)',
+                    basePrices: { tall: 2.25, grande: 2.65, venti: 2.95 },
+                    steps: [
+                        'Order a [SIZE] hot Chai Tea (just the tea bag)',
+                        'Ask for no water, just steamed milk instead',
+                        'Or get the tea with hot water and add half & half from bar',
+                        'Sweeten with honey packets (FREE)',
+                        'Creates the same creamy chai experience!'
+                    ]
+                }
+            },
+            'pumpkin_spice_latte': {
+                name: 'Pumpkin Spice Latte',
+                ingredients: {
+                    tall: ['Pumpkin spice sauce (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping'],
+                    grande: ['Pumpkin spice sauce (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping'],
+                    venti: ['Pumpkin spice sauce (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping']
+                },
+                prices: { tall: 5.95, grande: 6.45, venti: 6.95 },
+                hack: {
+                    base: 'Caffè Latte',
+                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.95 },
+                    additions: [{ item: 'Cinnamon Dolce syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Caffè Latte',
+                        'Add cinnamon dolce syrup (+$0.80)',
+                        'Ask for whipped cream (FREE)',
+                        'Request cinnamon powder on top (FREE)',
+                        'Not exact but very similar fall flavor!'
+                    ]
+                }
+            },
+            'iced_coffee': {
+                name: 'Iced Coffee',
+                ingredients: {
+                    tall: ['Brewed coffee', 'Ice', 'Classic syrup (3 pumps)'],
+                    grande: ['Brewed coffee', 'Ice', 'Classic syrup (4 pumps)'],
+                    venti: ['Brewed coffee', 'Ice', 'Classic syrup (6 pumps)']
+                },
+                prices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                hack: {
+                    base: 'Hot Coffee',
+                    basePrices: { tall: 2.45, grande: 2.65, venti: 2.95 },
+                    steps: [
+                        'Order a [SIZE] hot coffee',
+                        'Ask for a cup of ice (FREE)',
+                        'Let coffee cool for 2 minutes then pour over ice',
+                        'Add milk and sweetener from condiment bar',
+                        'Classic or vanilla syrup often FREE with iced coffee'
+                    ]
+                }
+            },
+            'iced_caramel_macchiato': {
+                name: 'Iced Caramel Macchiato',
+                ingredients: {
+                    tall: ['Vanilla syrup (3 pumps)', '2 shots espresso', 'Cold 2% milk', 'Ice', 'Caramel drizzle'],
+                    grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Cold 2% milk', 'Ice', 'Caramel drizzle'],
+                    venti: ['Vanilla syrup (6 pumps)', '3 shots espresso', 'Cold 2% milk', 'Ice', 'Caramel drizzle']
+                },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.75 },
+                hack: {
+                    base: 'Iced Espresso',
+                    basePrices: { tall: 2.95, grande: 3.45, venti: 3.95 },
+                    steps: [
+                        'Order [SIZE] iced espresso shots in a venti cup',
+                        'Add milk from condiment bar',
+                        'Stir in vanilla powder (FREE at condiment station)',
+                        'Ask barista for caramel drizzle (usually FREE)',
+                        'Huge savings with same taste profile!'
+                    ]
+                }
+            },
+            'flat_white': {
+                name: 'Flat White',
+                ingredients: {
+                    tall: ['2 ristretto shots', 'Microfoam milk'],
+                    grande: ['3 ristretto shots', 'Microfoam milk'],
+                    venti: ['4 ristretto shots', 'Microfoam milk']
+                },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                hack: {
+                    base: 'Doppio Espresso',
+                    basePrices: { tall: 2.45, grande: 2.95, venti: 3.45 },
+                    steps: [
+                        'Order a doppio (double shot) or triple espresso',
+                        'Ask for it in a larger cup',
+                        'Request extra steamed milk with microfoam (FREE)',
+                        'Specify you want whole milk for authentic flat white',
+                        'Nearly identical drink for half the price!'
+                    ]
+                }
+            },
+            'cinnamon_dolce_latte': {
+                name: 'Cinnamon Dolce Latte',
+                ingredients: {
+                    tall: ['Cinnamon dolce syrup (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream', 'Cinnamon dolce topping'],
+                    grande: ['Cinnamon dolce syrup (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Cinnamon dolce topping'],
+                    venti: ['Cinnamon dolce syrup (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Cinnamon dolce topping']
+                },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                hack: {
+                    base: 'Caffè Latte',
+                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.95 },
+                    steps: [
+                        'Order a [SIZE] Caffè Latte',
+                        'Ask for whipped cream (FREE)',
+                        'Request cinnamon powder mixed in and on top (FREE)',
+                        'Sweeten with raw sugar packets for dolce flavor',
+                        'Nearly identical taste without the syrup upcharge!'
+                    ]
+                }
+            },
+            'cappuccino': {
+                name: 'Cappuccino',
+                ingredients: {
+                    tall: ['1 shot espresso', 'Steamed milk', 'Thick layer of foam'],
+                    grande: ['2 shots espresso', 'Steamed milk', 'Thick layer of foam'],
+                    venti: ['2 shots espresso', 'Steamed milk', 'Thick layer of foam']
+                },
+                prices: { tall: 3.95, grande: 4.45, venti: 4.95 },
+                hack: {
+                    base: 'Espresso',
+                    basePrices: { tall: 2.45, grande: 2.95, venti: 2.95 },
+                    steps: [
+                        'Order [SIZE] espresso shots in a larger cup',
+                        'Ask for extra foam with steamed milk (FREE)',
+                        'Or ask for a "wet" cappuccino with less foam',
+                        'Dust with cocoa or cinnamon powder (FREE)',
+                        'Same drink, much lower price!'
+                    ]
+                }
+            },
+            'iced_vanilla_latte': {
+                name: 'Iced Vanilla Latte',
+                ingredients: {
+                    tall: ['Vanilla syrup (3 pumps)', '1 shot espresso', 'Cold 2% milk', 'Ice'],
+                    grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Cold 2% milk', 'Ice'],
+                    venti: ['Vanilla syrup (6 pumps)', '3 shots espresso', 'Cold 2% milk', 'Ice']
+                },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.75 },
+                hack: {
+                    base: 'Iced Americano',
+                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.75 },
+                    steps: [
+                        'Order an [SIZE] Iced Americano',
+                        'Ask for room for milk',
+                        'Add milk from condiment bar',
+                        'Use vanilla powder from condiment station (FREE)',
+                        'Or ask for vanilla in whipped cream stirred in (FREE)'
+                    ]
+                }
+            },
+            'cold_brew': {
+                name: 'Cold Brew Coffee',
+                ingredients: {
+                    tall: ['Cold brew coffee concentrate', 'Water', 'Ice'],
+                    grande: ['Cold brew coffee concentrate', 'Water', 'Ice'],
+                    venti: ['Cold brew coffee concentrate', 'Water', 'Ice']
+                },
+                prices: { tall: 3.95, grande: 4.45, venti: 4.95 },
+                hack: {
+                    base: 'Iced Coffee',
+                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
+                    steps: [
+                        'Order [SIZE] iced coffee',
+                        'Ask for no classic syrup',
+                        'Request light ice for stronger coffee',
+                        'Not as smooth as cold brew but similar caffeine',
+                        'Add cream to smooth out any bitterness'
+                    ]
+                }
+            },
+            'nitro_cold_brew': {
+                name: 'Nitro Cold Brew',
+                ingredients: {
+                    tall: ['Nitrogen-infused cold brew', 'No ice needed'],
+                    grande: ['Nitrogen-infused cold brew', 'No ice needed'],
+                    venti: ['Not available in Venti']
+                },
+                prices: { tall: 4.95, grande: 5.45, venti: 0 },
+                hack: {
+                    base: 'Cold Brew',
+                    basePrices: { tall: 3.95, grande: 4.45, venti: 0 },
+                    steps: [
+                        'Order a [SIZE] regular cold brew',
+                        'Ask for no ice to get more coffee',
+                        'Add a splash of heavy cream for creaminess',
+                        'Shake the cup to create foam',
+                        'Not as smooth but saves $1+'
+                    ]
+                }
+            }
+        };
+
+        // Populate dropdown
+        const drinkSelect = document.getElementById('drinkSelect');
+        for (const [key, drink] of Object.entries(drinks)) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = censorDrinkName(drink.name);
+            drinkSelect.appendChild(option);
+        }
+
+        // Current selected size
+        let currentSize = 'tall';
+
+        // Size button handlers
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentSize = this.dataset.size;
+                updateDisplay();
+            });
+        });
+
+        // Drink selection handler
+        drinkSelect.addEventListener('change', function() {
+            if (this.value) {
+                document.getElementById('results').classList.add('active');
+                currentSize = 'tall';
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('.size-btn[data-size="tall"]').classList.add('active');
+                updateDisplay();
+            } else {
+                document.getElementById('results').classList.remove('active');
+            }
+        });
+
+        function updateDisplay() {
+            const selectedDrink = drinks[drinkSelect.value];
+            if (!selectedDrink) return;
+
+            // Handle venti size for drinks that don't have it
+            let size = currentSize;
+            if (currentSize === 'venti' && selectedDrink.prices.venti === 0) {
+                alert('This drink is not available in Venti size. Showing Grande instead.');
+                size = 'grande';
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('.size-btn[data-size="grande"]').classList.add('active');
+                currentSize = 'grande';
+            }
+
+            // Update drink name
+            document.getElementById('drinkName').textContent = censorDrinkName(selectedDrink.name) + ` (${size.charAt(0).toUpperCase() + size.slice(1)})`;
+
+            // Update ingredients
+            const ingredientsList = document.getElementById('ingredientsList');
+            ingredientsList.innerHTML = '';
+            selectedDrink.ingredients[size].forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                ingredientsList.appendChild(li);
+            });
+
+            // Calculate prices
+            const originalPrice = selectedDrink.prices[size];
+            let hackPrice = selectedDrink.hack.basePrices[size];
+            
+            // Add any additional costs
+            if (selectedDrink.hack.additions) {
+                selectedDrink.hack.additions.forEach(add => {
+                    hackPrice += add.price;
+                });
+            }
+
+            const savings = originalPrice - hackPrice;
+            const savingsPercent = Math.round((savings / originalPrice) * 100);
+
+            // Update price displays
+            document.getElementById('originalPrice').textContent = `${originalPrice.toFixed(2)}`;
+            document.getElementById('hackPrice').textContent = `${hackPrice.toFixed(2)}`;
+            document.getElementById('savingsAmount').textContent = `${savings.toFixed(2)}`;
+            document.getElementById('savingsPercent').textContent = `${savingsPercent}%`;
+
+            // Update similarity rating
+            const similarity = selectedDrink.hack.similarity || 50;
+            document.getElementById('similarityBar').style.width = `${similarity}%`;
+            document.getElementById('similarityBar').textContent = `${similarity}%`;
+            document.getElementById('similarityPercent').textContent = `${similarity}%`;
+            
+            // Determine similarity description
+            let similarityDesc = '';
+            if (similarity >= 95) {
+                similarityDesc = 'Practically Identical!';
+            } else if (similarity >= 85) {
+                similarityDesc = 'Very Close Match';
+            } else if (similarity >= 70) {
+                similarityDesc = 'Good Alternative';
+            } else if (similarity >= 50) {
+                similarityDesc = 'Similar Flavor Profile';
+            } else {
+                similarityDesc = 'Different but Saves Money';
+            }
+            document.getElementById('similarityDesc').textContent = similarityDesc;
+
+            // Update breakdowns
+            document.getElementById('originalBreakdown').innerHTML = `
+                Full ${censorDrinkName(selectedDrink.name)}<br>
+                Size: ${size.charAt(0).toUpperCase() + size.slice(1)}
+            `;
+
+            let hackBreakdown = `Base: ${selectedDrink.hack.base} ($${selectedDrink.hack.basePrices[size].toFixed(2)})`;
+            if (selectedDrink.hack.additions) {
+                selectedDrink.hack.additions.forEach(add => {
+                    hackBreakdown += `<br>+ ${add.item} ($${add.price.toFixed(2)})`;
+                });
+            }
+            hackBreakdown += `<br>+ FREE additions`;
+            document.getElementById('hackBreakdown').innerHTML = hackBreakdown;
+
+            // Update hack steps
+            const hackSteps = document.getElementById('hackSteps');
+            hackSteps.innerHTML = '';
+            selectedDrink.hack.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.innerHTML = step.replace('[SIZE]', size.charAt(0).toUpperCase() + size.slice(1));
+                hackSteps.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
