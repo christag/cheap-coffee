@@ -313,6 +313,131 @@
             font-size: 0.9em;
             border-left: 3px solid #f4d03f;
         }
+
+        .similarity-section {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f5f0e6 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #e8dfd0;
+        }
+
+        .similarity-meter {
+            margin: 15px 0;
+        }
+
+        .similarity-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0d5f3a;
+        }
+
+        .similarity-bar-bg {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .similarity-bar {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.8s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .similarity-bar.excellent {
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+        }
+
+        .similarity-bar.good {
+            background: linear-gradient(90deg, #8BC34A, #7cb342);
+        }
+
+        .similarity-bar.moderate {
+            background: linear-gradient(90deg, #FFC107, #ffb300);
+        }
+
+        .similarity-bar.fair {
+            background: linear-gradient(90deg, #FF9800, #fb8c00);
+        }
+
+        .similarity-bar.low {
+            background: linear-gradient(90deg, #f44336, #e53935);
+        }
+
+        .similarity-description {
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        @media (min-width: 768px) {
+            .customization-options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 10px 0;
+                align-items: baseline;
+            }
+
+            .customization-options strong {
+                min-width: 120px;
+                color: #0d5f3a;
+            }
+
+            .customization-options .options-list {
+                flex: 1;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .cost-comparison {
+                grid-template-columns: 1fr 1fr;
+                max-width: 600px;
+                margin: 20px auto;
+            }
+
+            .container {
+                max-width: 1000px;
+            }
+
+            .customization-section {
+                padding: 20px 25px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px;
+            }
+
+            .results-section {
+                padding: 30px 35px;
+            }
+
+            .selector-section {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 20px;
+                align-items: end;
+            }
+
+            .selector-section label:first-child {
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -357,6 +482,23 @@
             <div class="customization-section" id="customizations" style="display: none;">
                 <h3>🎨 FREE Customizations Available:</h3>
                 <div id="customizationsList"></div>
+            </div>
+
+            <div class="similarity-section">
+                <div class="similarity-meter">
+                    <div class="similarity-label">
+                        <span>Similarity to Original</span>
+                        <span id="similarityPercent">0%</span>
+                    </div>
+                    <div class="similarity-bar-bg">
+                        <div class="similarity-bar" id="similarityBar" style="width: 0%">
+                            <span id="similarityText">0%</span>
+                        </div>
+                    </div>
+                    <div class="similarity-description" id="similarityDesc">
+                        Calculating similarity...
+                    </div>
+                </div>
             </div>
 
             <div class="cost-comparison">
@@ -433,6 +575,7 @@
                 hack: {
                     base: 'Caffè Latte',
                     basePrices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                    similarity: 75,
                     additions: [{ item: '2 pumps chai syrup', price: 0.80 }],
                     steps: [
                         'Order a [SIZE] Caffè Latte',
@@ -461,6 +604,7 @@
                 hack: {
                     base: 'Triple Espresso',
                     basePrices: { tall: 3.85, grande: 3.85, venti: 0 },
+                    similarity: 85,
                     steps: [
                         'Order a triple ristretto Blonde Espresso in an 8oz cup',
                         'Ask for steamed oatmilk (FREE since Nov 2024)',
@@ -489,6 +633,7 @@
                 hack: {
                     base: 'Americano',
                     basePrices: { tall: 3.95, grande: 4.45, venti: 4.95 },
+                    similarity: 90,
                     steps: [
                         'Order a [SIZE] Americano',
                         'Ask for it with steamed milk instead of water',
@@ -517,6 +662,7 @@
                 hack: {
                     base: 'Caffè Latte',
                     basePrices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                    similarity: 85,
                     steps: [
                         'Order a [SIZE] Caffè Latte',
                         'Ask for caramel drizzle on top and bottom (FREE)',
@@ -982,6 +1128,31 @@
             }
         });
 
+        // Default similarity scores for drinks without explicit values
+        const defaultSimilarities = {
+            'pumpkin_spice_latte': 75,
+            'pecan_oatmilk_cortado': 85,
+            'caffe_latte': 90,
+            'caramel_macchiato': 85,
+            'white_chocolate_mocha': 80,
+            'pumpkin_cream_cold_brew': 90,
+            'vanilla_latte': 85,
+            'caffe_mocha': 80,
+            'chai_tea_latte': 70,
+            'iced_coffee': 60,
+            'iced_caramel_macchiato': 85,
+            'flat_white': 95,
+            'cinnamon_dolce_latte': 85,
+            'cappuccino': 95,
+            'iced_vanilla_latte': 80,
+            'cold_brew': 50,
+            'nitro_cold_brew': 60,
+            'iced_brown_sugar_oatmilk': 100,
+            'iced_toasted_vanilla_oatmilk': 85,
+            'americano': 70,
+            'matcha_latte': 75
+        };
+
         function updateDisplay() {
             const selectedDrink = drinks[drinkSelect.value];
             if (!selectedDrink) return;
@@ -1039,11 +1210,16 @@
                 for (const [key, options] of Object.entries(selectedDrink.customizations)) {
                     const customDiv = document.createElement('div');
                     customDiv.className = 'customization-options';
-                    customDiv.innerHTML = `<strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong> `;
+                    
+                    const labelSpan = document.createElement('strong');
+                    labelSpan.textContent = key.charAt(0).toUpperCase() + key.slice(1) + ':';
+                    customDiv.appendChild(labelSpan);
+                    
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'options-list';
                     
                     options.forEach((option, index) => {
                         const span = document.createElement('span');
-                        span.style.marginRight = '10px';
                         if (option.includes('FREE')) {
                             span.innerHTML = option.replace('(FREE)', '<span class="free-tag">FREE</span>');
                         } else if (option.includes('+$')) {
@@ -1052,14 +1228,47 @@
                         } else {
                             span.textContent = option;
                         }
-                        if (index < options.length - 1) span.textContent += ' • ';
-                        customDiv.appendChild(span);
+                        if (index < options.length - 1) {
+                            span.innerHTML += ' • ';
+                        }
+                        optionsDiv.appendChild(span);
                     });
                     
+                    customDiv.appendChild(optionsDiv);
                     customizationsList.appendChild(customDiv);
                 }
             } else {
                 customizationsDiv.style.display = 'none';
+            }
+            
+            // Display similarity score
+            const similarity = selectedDrink.hack.similarity || defaultSimilarities[drinkSelect.value] || 75;
+            const similarityBar = document.getElementById('similarityBar');
+            const similarityPercent = document.getElementById('similarityPercent');
+            const similarityText = document.getElementById('similarityText');
+            const similarityDesc = document.getElementById('similarityDesc');
+            
+            similarityPercent.textContent = `${similarity}%`;
+            similarityText.textContent = `${similarity}%`;
+            similarityBar.style.width = `${similarity}%`;
+            
+            // Set color class based on similarity
+            similarityBar.className = 'similarity-bar';
+            if (similarity >= 90) {
+                similarityBar.classList.add('excellent');
+                similarityDesc.textContent = 'Nearly identical taste!';
+            } else if (similarity >= 75) {
+                similarityBar.classList.add('good');
+                similarityDesc.textContent = 'Very close match';
+            } else if (similarity >= 60) {
+                similarityBar.classList.add('moderate');
+                similarityDesc.textContent = 'Good alternative';
+            } else if (similarity >= 40) {
+                similarityBar.classList.add('fair');
+                similarityDesc.textContent = 'Similar flavor profile';
+            } else {
+                similarityBar.classList.add('low');
+                similarityDesc.textContent = 'Different but saves money';
             }
 
             // Update breakdowns
