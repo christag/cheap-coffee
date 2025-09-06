@@ -737,6 +737,91 @@
                     ]
                 }
             },
+            'iced_pumpkin_spice_latte': {
+                name: 'Iced Pumpkin Spice Latte',
+                category: 'Fall Seasonal',
+                ingredients: {
+                    tall: ['1 shot espresso', '3 pumps pumpkin sauce', 'Cold 2% milk', 'Ice', 'Whipped cream', 'Pumpkin spice topping'],
+                    grande: ['2 shots espresso', '4 pumps pumpkin sauce', 'Cold 2% milk', 'Ice', 'Whipped cream', 'Pumpkin spice topping'],
+                    venti: ['3 shots espresso', '6 pumps pumpkin sauce', 'Cold 2% milk', 'Ice', 'Whipped cream', 'Pumpkin spice topping']
+                },
+                prices: { tall: 6.45, grande: 6.95, venti: 7.45 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf', '½ Decaf'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    whip: ['With whip (default)', 'No whip', 'Extra whip'],
+                    pumps: ['Standard pumps', 'Half-sweet', 'Extra pumps']
+                },
+                hack: {
+                    base: 'Iced Caffè Latte',
+                    basePrices: { tall: 5.45, grande: 5.95, venti: 6.75 },
+                    additions: [{ item: '2 pumps chai syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Iced Caffè Latte',
+                        'Add 2 pumps chai syrup (+$0.80)',
+                        'Ask for whipped cream (FREE)',
+                        'Request cinnamon and nutmeg powder (FREE)',
+                        'Creates a similar spiced latte for less!'
+                    ]
+                }
+            },
+            'iced_pumpkin_cream_chai': {
+                name: 'Iced Pumpkin Cream Chai',
+                category: 'Fall Seasonal',
+                ingredients: {
+                    tall: ['Chai concentrate', 'Cold 2% milk', 'Ice', 'Pumpkin cream cold foam'],
+                    grande: ['Chai concentrate', 'Cold 2% milk', 'Ice', 'Pumpkin cream cold foam'],
+                    venti: ['Chai concentrate', 'Cold 2% milk', 'Ice', 'Pumpkin cream cold foam']
+                },
+                prices: { tall: 6.25, grande: 6.75, venti: 7.25 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    foam: ['Standard pumpkin foam', 'Extra foam', 'Light foam'],
+                    chai: ['Standard chai', 'Extra chai pumps', 'Light chai']
+                },
+                hack: {
+                    base: 'Iced Chai Tea Latte',
+                    basePrices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                    steps: [
+                        'Order a [SIZE] Iced Chai Tea Latte',
+                        'Ask for vanilla sweet cream cold foam (FREE)',
+                        'Request pumpkin spice topping on foam (FREE)',
+                        'Add cinnamon powder (FREE)',
+                        'Nearly identical for $1 less!'
+                    ]
+                }
+            },
+            'pecan_crunch_oat_latte': {
+                name: 'Pecan Crunch Oat Latte',
+                category: 'Fall Seasonal',
+                ingredients: {
+                    tall: ['1 shot espresso', '3 pumps pecan syrup', 'Steamed oatmilk', 'Pecan crunch topping'],
+                    grande: ['2 shots espresso', '4 pumps pecan syrup', 'Steamed oatmilk', 'Pecan crunch topping'],
+                    venti: ['2 shots espresso', '5 pumps pecan syrup', 'Steamed oatmilk', 'Pecan crunch topping']
+                },
+                prices: { tall: 6.45, grande: 6.95, venti: 7.45 },
+                customizations: {
+                    milk: ['Oatmilk (default)', '2%', 'Nonfat', 'Whole', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf'],
+                    temperature: ['Standard', 'Kids', 'Extra Hot'],
+                    foam: ['Light foam', 'No foam', 'Extra foam'],
+                    pumps: ['Standard pecan', 'Half-sweet', 'Extra pumps']
+                },
+                hack: {
+                    base: 'Caffè Latte',
+                    basePrices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                    additions: [{ item: 'Toffee nut syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Caffè Latte with oatmilk (FREE)',
+                        'Add toffee nut syrup (+$0.80)',
+                        'Ask for caramel drizzle (FREE)',
+                        'Request cinnamon topping (FREE)',
+                        'Similar nutty flavor profile, saves money!'
+                    ]
+                }
+            },
             'vanilla_latte': {
                 name: 'Vanilla Latte',
                 category: 'Core Espresso',
@@ -804,6 +889,32 @@
                         'Add steamed milk from condiment bar',
                         'Sweeten with honey packets (FREE)',
                         'Creates authentic chai for half price!'
+                    ]
+                }
+            },
+            'iced_chai_tea_latte': {
+                name: 'Iced Chai Tea Latte',
+                category: 'Tea',
+                ingredients: {
+                    tall: ['Chai concentrate', 'Cold 2% milk', 'Ice'],
+                    grande: ['Chai concentrate', 'Cold 2% milk', 'Ice'],
+                    venti: ['Chai concentrate', 'Cold 2% milk', 'Ice']
+                },
+                prices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    sweetness: ['Standard sweet', 'Half-sweet', 'Extra pumps']
+                },
+                hack: {
+                    base: 'Iced Tea',
+                    basePrices: { tall: 2.95, grande: 3.25, venti: 3.45 },
+                    steps: [
+                        'Order [SIZE] iced chai tea (2 tea bags)',
+                        'Ask for light ice',
+                        'Add milk from condiment bar',
+                        'Sweeten with liquid cane sugar (FREE)',
+                        'Mix well for creamy iced chai!'
                     ]
                 }
             },
@@ -1147,9 +1258,13 @@
             'caramel_macchiato': 85,
             'white_chocolate_mocha': 80,
             'pumpkin_cream_cold_brew': 90,
+            'iced_pumpkin_spice_latte': 70,
+            'iced_pumpkin_cream_chai': 85,
+            'pecan_crunch_oat_latte': 75,
             'vanilla_latte': 85,
             'caffe_mocha': 80,
             'chai_tea_latte': 70,
+            'iced_chai_tea_latte': 75,
             'iced_coffee': 60,
             'iced_caramel_macchiato': 85,
             'flat_white': 95,
