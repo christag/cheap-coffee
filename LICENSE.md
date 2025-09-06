@@ -95,7 +95,7 @@ For licensing questions, commercial use permissions, or corporate licensing:
 
 - **Email**: legal@cheap-coffee.com
 - **Website**: https://cheap-coffee.com
-- **Repository**: https://github.com/[username]/cheap-coffee
+- **Repository**: https://github.com/christag/cheap-coffee
 
 ---
 
