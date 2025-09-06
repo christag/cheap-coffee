@@ -1,0 +1,19 @@
+{
+  "name": "cheap-coffee",
+  "version": "1.0.0",
+  "description": "Save 40-60% on coffee shop drinks with smart ordering hacks - cheap-coffee.com",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "deploy": "npx wrangler pages deploy . --project-name=cheap-coffee"
+  },
+  "keywords": [
+    "coffee",
+    "savings",
+    "hacks"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

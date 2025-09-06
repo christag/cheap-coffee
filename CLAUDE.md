@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Frugal Brew is a single-page web application that helps users save money on Starbucks drinks by revealing ordering "hacks". The app presents menu drinks alongside cheaper alternatives that taste similar, calculating potential savings of 40-60% per drink.
+Cheap Coffee (cheap-coffee.com) is a single-page web application that helps users save money on popular coffee chain drinks by revealing ordering "hacks". The app presents menu drinks alongside cheaper alternatives that taste similar, calculating potential savings of 40-60% per drink.
 
 ## Key Architecture
 
@@ -28,7 +28,7 @@ Each drink object contains:
 
 ## Research Context
 
-The `research.md` file contains detailed Starbucks September 2025 menu information including:
+The `research.md` file contains detailed coffee shop menu information (September 2025) including:
 - Current seasonal offerings and pricing
 - Standard recipe patterns (pump counts, shot numbers)
 - Free customization options after the November 2024 policy change

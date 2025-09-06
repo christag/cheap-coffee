@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frugal Brew - Save 40-60% on St*rbucks Drinks (September 2025)</title>
+    <title>Cheap Coffee - Save 40-60% on Coffee Shop Drinks | cheap-coffee.com</title>
     <style>
         * {
             margin: 0;
@@ -318,12 +318,22 @@
 <body>
     <div class="container">
         <header>
-            <h1>☕ Frugal Brew ☕</h1>
-            <p class="subtitle">Save 40-60% on St*rbucks drinks with smart ordering hacks!</p>
-            <p class="subtitle" style="font-size: 0.9em; margin-top: 5px;">Updated September 2025 - All non-dairy milks now FREE!</p>
+            <h1>☕ Cheap Coffee ☕</h1>
+            <p class="subtitle">Save 40-60% on popular coffee chain drinks with smart ordering hacks!</p>
+            <p class="subtitle" style="font-size: 0.9em; margin-top: 5px;">Updated September 2025 - Based on major coffee chain pricing</p>
         </header>
 
         <div class="selector-section">
+            <label for="categorySelect">Filter by Category:</label>
+            <select id="categorySelect" style="margin-bottom: 15px;">
+                <option value="all">All Drinks</option>
+                <option value="Fall Seasonal">🍂 Fall Seasonal</option>
+                <option value="Core Espresso">☕ Core Espresso</option>
+                <option value="Shaken Espresso">🧊 Shaken Espresso</option>
+                <option value="Tea">🍵 Tea Drinks</option>
+                <option value="Cold Brew">❄️ Cold Brew</option>
+            </select>
+            
             <label for="drinkSelect">Choose Your Favorite Drink:</label>
             <select id="drinkSelect">
                 <option value="">-- Select a drink to see savings --</option>
@@ -340,8 +350,13 @@
             </div>
 
             <div class="ingredients">
-                <h3>📝 Original Ingredients:</h3>
+                <h3>📝 Original Recipe:</h3>
                 <ul id="ingredientsList"></ul>
+            </div>
+
+            <div class="customization-section" id="customizations" style="display: none;">
+                <h3>🎨 FREE Customizations Available:</h3>
+                <div id="customizationsList"></div>
             </div>
 
             <div class="cost-comparison">
@@ -513,27 +528,61 @@
             },
             'white_chocolate_mocha': {
                 name: 'White Chocolate Mocha',
+                category: 'Core Espresso',
                 ingredients: {
-                    tall: ['White chocolate sauce (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream'],
-                    grande: ['White chocolate sauce (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream'],
-                    venti: ['White chocolate sauce (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream']
+                    tall: ['3 pumps white chocolate sauce', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream'],
+                    grande: ['4 pumps white chocolate sauce', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream'],
+                    venti: ['5 pumps white chocolate sauce', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream']
+                },
+                prices: { tall: 5.95, grande: 6.45, venti: 6.95 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf'],
+                    temperature: ['Standard', 'Kids', 'Extra Hot'],
+                    whip: ['With whip (default)', 'No whip', 'Extra whip'],
+                    pumps: ['Standard white chocolate', 'Half-sweet', 'Extra pumps']
+                },
+                hack: {
+                    base: 'Caffè Latte',
+                    basePrices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                    additions: [{ item: '2 pumps white chocolate', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Caffè Latte',
+                        'Add 2 pumps white chocolate sauce (+$0.80)',
+                        'Ask for whipped cream (FREE)',
+                        'Still saves money even with syrup charge!'
+                    ]
+                }
+            },
+            'pumpkin_cream_cold_brew': {
+                name: 'Pumpkin Cream Cold Brew',
+                category: 'Fall Seasonal',
+                ingredients: {
+                    tall: ['Cold brew coffee', '2 pumps vanilla syrup', 'Pumpkin cream cold foam', 'Ice'],
+                    grande: ['Cold brew coffee', '3 pumps vanilla syrup', 'Pumpkin cream cold foam', 'Ice'],
+                    venti: ['Cold brew coffee', '4 pumps vanilla syrup', 'Pumpkin cream cold foam', 'Ice']
                 },
                 prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                customizations: {
+                    sweetness: ['Standard vanilla', 'No vanilla', 'Half-sweet', 'Extra vanilla'],
+                    ice: ['Standard ice', 'Light ice', 'No ice', 'Extra ice'],
+                    foam: ['Standard pumpkin foam', 'Extra foam', 'Light foam']
+                },
                 hack: {
-                    base: 'Americano',
-                    basePrices: { tall: 3.45, grande: 3.95, venti: 4.45 },
-                    additions: [{ item: 'White chocolate syrup', price: 0.80 }],
+                    base: 'Cold Brew',
+                    basePrices: { tall: 4.45, grande: 4.95, venti: 5.45 },
                     steps: [
-                        'Order a [SIZE] Americano',
-                        'Add white chocolate syrup (+$0.80)',
-                        'Ask for extra steamed milk (FREE)',
-                        'Top with whipped cream (FREE)',
-                        'Total hack includes syrup charge'
+                        'Order a [SIZE] Cold Brew',
+                        'Ask for vanilla sweet cream cold foam (FREE)',
+                        'Request pumpkin spice topping on foam (FREE)',
+                        'Add cinnamon powder (FREE)',
+                        'Saves $1 with similar fall flavor!'
                     ]
                 }
             },
             'vanilla_latte': {
                 name: 'Vanilla Latte',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['Vanilla syrup (3 pumps)', '1 shot espresso', 'Steamed 2% milk'],
                     grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Steamed 2% milk'],
@@ -554,6 +603,7 @@
             },
             'caffe_mocha': {
                 name: 'Caffè Mocha',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['Mocha sauce (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream'],
                     grande: ['Mocha sauce (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream'],
@@ -575,47 +625,34 @@
             },
             'chai_tea_latte': {
                 name: 'Chai Tea Latte',
+                category: 'Tea',
                 ingredients: {
-                    tall: ['Chai concentrate', 'Steamed 2% milk', 'Foam topping'],
-                    grande: ['Chai concentrate', 'Steamed 2% milk', 'Foam topping'],
-                    venti: ['Chai concentrate', 'Steamed 2% milk', 'Foam topping']
+                    tall: ['Chai concentrate (1:1 ratio)', 'Steamed 2% milk', 'Light foam'],
+                    grande: ['Chai concentrate (1:1 ratio)', 'Steamed 2% milk', 'Light foam'],
+                    venti: ['Chai concentrate (1:1 ratio)', 'Steamed 2% milk', 'Light foam']
                 },
-                prices: { tall: 4.95, grande: 5.45, venti: 5.95 },
+                prices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    temperature: ['Standard', 'Kids', 'Extra Hot'],
+                    foam: ['Light foam (default)', 'No foam', 'Extra foam'],
+                    pumps: ['Standard chai', 'Extra chai pumps', 'Light chai']
+                },
                 hack: {
-                    base: 'Chai Tea (tea bag)',
-                    basePrices: { tall: 2.25, grande: 2.65, venti: 2.95 },
+                    base: 'Chai Tea Bags',
+                    basePrices: { tall: 2.95, grande: 3.25, venti: 3.45 },
                     steps: [
-                        'Order a [SIZE] hot Chai Tea (just the tea bag)',
-                        'Ask for no water, just steamed milk instead',
-                        'Or get the tea with hot water and add half & half from bar',
+                        'Order [SIZE] hot water with 2 chai tea bags',
+                        'Steep for 5 minutes for strong flavor',
+                        'Add steamed milk from condiment bar',
                         'Sweeten with honey packets (FREE)',
-                        'Creates the same creamy chai experience!'
-                    ]
-                }
-            },
-            'pumpkin_spice_latte': {
-                name: 'Pumpkin Spice Latte',
-                ingredients: {
-                    tall: ['Pumpkin spice sauce (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping'],
-                    grande: ['Pumpkin spice sauce (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping'],
-                    venti: ['Pumpkin spice sauce (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Pumpkin spice topping']
-                },
-                prices: { tall: 5.95, grande: 6.45, venti: 6.95 },
-                hack: {
-                    base: 'Caffè Latte',
-                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.95 },
-                    additions: [{ item: 'Cinnamon Dolce syrup', price: 0.80 }],
-                    steps: [
-                        'Order a [SIZE] Caffè Latte',
-                        'Add cinnamon dolce syrup (+$0.80)',
-                        'Ask for whipped cream (FREE)',
-                        'Request cinnamon powder on top (FREE)',
-                        'Not exact but very similar fall flavor!'
+                        'Creates authentic chai for half price!'
                     ]
                 }
             },
             'iced_coffee': {
                 name: 'Iced Coffee',
+                category: 'Cold Brew',
                 ingredients: {
                     tall: ['Brewed coffee', 'Ice', 'Classic syrup (3 pumps)'],
                     grande: ['Brewed coffee', 'Ice', 'Classic syrup (4 pumps)'],
@@ -636,6 +673,7 @@
             },
             'iced_caramel_macchiato': {
                 name: 'Iced Caramel Macchiato',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['Vanilla syrup (3 pumps)', '2 shots espresso', 'Cold 2% milk', 'Ice', 'Caramel drizzle'],
                     grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Cold 2% milk', 'Ice', 'Caramel drizzle'],
@@ -656,6 +694,7 @@
             },
             'flat_white': {
                 name: 'Flat White',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['2 ristretto shots', 'Microfoam milk'],
                     grande: ['3 ristretto shots', 'Microfoam milk'],
@@ -676,6 +715,7 @@
             },
             'cinnamon_dolce_latte': {
                 name: 'Cinnamon Dolce Latte',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['Cinnamon dolce syrup (3 pumps)', '1 shot espresso', 'Steamed 2% milk', 'Whipped cream', 'Cinnamon dolce topping'],
                     grande: ['Cinnamon dolce syrup (4 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Cinnamon dolce topping'],
@@ -696,6 +736,7 @@
             },
             'cappuccino': {
                 name: 'Cappuccino',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['1 shot espresso', 'Steamed milk', 'Thick layer of foam'],
                     grande: ['2 shots espresso', 'Steamed milk', 'Thick layer of foam'],
@@ -716,6 +757,7 @@
             },
             'iced_vanilla_latte': {
                 name: 'Iced Vanilla Latte',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['Vanilla syrup (3 pumps)', '1 shot espresso', 'Cold 2% milk', 'Ice'],
                     grande: ['Vanilla syrup (4 pumps)', '2 shots espresso', 'Cold 2% milk', 'Ice'],
@@ -736,6 +778,7 @@
             },
             'cold_brew': {
                 name: 'Cold Brew Coffee',
+                category: 'Cold Brew',
                 ingredients: {
                     tall: ['Cold brew coffee concentrate', 'Water', 'Ice'],
                     grande: ['Cold brew coffee concentrate', 'Water', 'Ice'],
@@ -756,6 +799,7 @@
             },
             'nitro_cold_brew': {
                 name: 'Nitro Cold Brew',
+                category: 'Cold Brew',
                 ingredients: {
                     tall: ['Nitrogen-infused cold brew', 'No ice needed'],
                     grande: ['Nitrogen-infused cold brew', 'No ice needed'],
@@ -773,17 +817,144 @@
                         'Not as smooth but saves $1+'
                     ]
                 }
+            },
+            'iced_brown_sugar_oatmilk': {
+                name: 'Iced Brown Sugar Oatmilk Shaken Espresso',
+                category: 'Shaken Espresso',
+                ingredients: {
+                    tall: ['2 shots Blonde Espresso', '3 pumps brown sugar syrup', 'Cinnamon powder', 'Oatmilk splash', 'Ice'],
+                    grande: ['3 shots Blonde Espresso', '4 pumps brown sugar syrup', 'Cinnamon powder', 'Oatmilk splash', 'Ice'],
+                    venti: ['4 shots Blonde Espresso', '6 pumps brown sugar syrup', 'Cinnamon powder', 'Oatmilk splash', 'Ice']
+                },
+                prices: { tall: 6.45, grande: 6.95, venti: 7.45 },
+                customizations: {
+                    roast: ['Blonde Espresso (default)', 'Signature Espresso', 'Decaf', '½ Decaf'],
+                    milk: ['Oatmilk (default)', '2%', 'Nonfat', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    pumps: ['Standard brown sugar', 'Half-sweet', 'Extra pumps'],
+                    toppings: ['Cinnamon (default)', 'No cinnamon', 'Extra cinnamon']
+                },
+                hack: {
+                    base: 'Iced Triple Espresso',
+                    basePrices: { tall: 3.95, grande: 4.45, venti: 4.95 },
+                    steps: [
+                        'Order [SIZE] iced espresso (2/3/4 shots)',
+                        'Ask for it shaken with ice',
+                        'Add oatmilk (FREE since Nov 2024)',
+                        'Use brown sugar packets from condiment bar (FREE)',
+                        'Request cinnamon powder on top (FREE)',
+                        'Identical drink for $2.50 less!'
+                    ]
+                }
+            },
+            'iced_toasted_vanilla_oatmilk': {
+                name: 'Iced Toasted Vanilla Oatmilk Shaken Espresso',
+                category: 'Shaken Espresso',
+                ingredients: {
+                    tall: ['2 shots Blonde Espresso', '3 pumps toasted vanilla syrup', 'Oatmilk splash', 'Ice'],
+                    grande: ['3 shots Blonde Espresso', '4 pumps toasted vanilla syrup', 'Oatmilk splash', 'Ice'],
+                    venti: ['4 shots Blonde Espresso', '6 pumps toasted vanilla syrup', 'Oatmilk splash', 'Ice']
+                },
+                prices: { tall: 6.45, grande: 6.95, venti: 7.45 },
+                customizations: {
+                    roast: ['Blonde Espresso (default)', 'Signature Espresso', 'Decaf'],
+                    milk: ['Oatmilk (default)', '2%', 'Almond (FREE)', 'Soy (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    pumps: ['Standard vanilla', 'Half-sweet', 'Extra pumps']
+                },
+                hack: {
+                    base: 'Iced Triple Espresso',
+                    basePrices: { tall: 3.95, grande: 4.45, venti: 4.95 },
+                    additions: [{ item: 'Vanilla syrup', price: 0.80 }],
+                    steps: [
+                        'Order [SIZE] iced espresso (2/3/4 shots)',
+                        'Add 2 pumps vanilla syrup (+$0.80)',
+                        'Ask for it shaken with ice',
+                        'Add oatmilk (FREE)',
+                        'Still saves $1.70 per drink!'
+                    ]
+                }
+            },
+            'americano': {
+                name: 'Caffè Americano',
+                category: 'Core Espresso',
+                ingredients: {
+                    tall: ['2 shots espresso', 'Hot water'],
+                    grande: ['3 shots espresso', 'Hot water'],
+                    venti: ['4 shots espresso', 'Hot water']
+                },
+                prices: { tall: 3.95, grande: 4.45, venti: 4.95 },
+                customizations: {
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf', '½ Decaf'],
+                    temperature: ['Standard', 'Extra Hot', 'Kids'],
+                    room: ['No room', 'With room for milk'],
+                    shots: ['Standard shots', 'Extra shot (+$1.00)', 'Ristretto', 'Long shots']
+                },
+                hack: {
+                    base: 'Pour Over Coffee',
+                    basePrices: { tall: 3.25, grande: 3.75, venti: 4.25 },
+                    steps: [
+                        'Order a [SIZE] pour over coffee',
+                        'Choose Pike Place or dark roast',
+                        'Stronger than regular drip coffee',
+                        'Similar bold flavor for less',
+                        'Add milk/cream as desired'
+                    ]
+                }
+            },
+            'matcha_latte': {
+                name: 'Matcha Tea Latte',
+                category: 'Tea',
+                ingredients: {
+                    tall: ['3 scoops matcha powder', '3 pumps liquid cane sugar', 'Steamed 2% milk'],
+                    grande: ['4 scoops matcha powder', '4 pumps liquid cane sugar', 'Steamed 2% milk'],
+                    venti: ['5 scoops matcha powder', '5 pumps liquid cane sugar', 'Steamed 2% milk']
+                },
+                prices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    temperature: ['Standard', 'Extra Hot', 'Kids'],
+                    sweetness: ['Standard sweet', 'Half-sweet', 'No sweetener', 'Extra sweet'],
+                    foam: ['Light foam', 'No foam', 'Extra foam']
+                },
+                hack: {
+                    base: 'Hot Tea',
+                    basePrices: { tall: 2.95, grande: 3.25, venti: 3.45 },
+                    additions: [{ item: 'Matcha powder', price: 0.95 }],
+                    steps: [
+                        'Order a [SIZE] hot water',
+                        'Ask for 2 scoops matcha powder (+$0.95)',
+                        'Add steamed milk (specify type - all FREE)',
+                        'Sweeten with honey packets (FREE)',
+                        'Mix well for smooth consistency'
+                    ]
+                }
             }
         };
 
-        // Populate dropdown
-        const drinkSelect = document.getElementById('drinkSelect');
-        for (const [key, drink] of Object.entries(drinks)) {
-            const option = document.createElement('option');
-            option.value = key;
-            option.textContent = censorDrinkName(drink.name);
-            drinkSelect.appendChild(option);
+        // Function to populate drinks dropdown
+        function populateDrinks(category = 'all') {
+            const drinkSelect = document.getElementById('drinkSelect');
+            drinkSelect.innerHTML = '<option value="">-- Select a drink to see savings --</option>';
+            
+            for (const [key, drink] of Object.entries(drinks)) {
+                if (category === 'all' || drink.category === category) {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = censorDrinkName(drink.name);
+                    drinkSelect.appendChild(option);
+                }
+            }
         }
+        
+        // Initial population
+        populateDrinks();
+        
+        // Category filter handler
+        document.getElementById('categorySelect').addEventListener('change', function() {
+            populateDrinks(this.value);
+            document.getElementById('results').classList.remove('active');
+        });
 
         // Current selected size
         let currentSize = 'tall';
@@ -857,26 +1028,39 @@
             document.getElementById('savingsAmount').textContent = `${savings.toFixed(2)}`;
             document.getElementById('savingsPercent').textContent = `${savingsPercent}%`;
 
-            // Update similarity rating
-            const similarity = selectedDrink.hack.similarity || 50;
-            document.getElementById('similarityBar').style.width = `${similarity}%`;
-            document.getElementById('similarityBar').textContent = `${similarity}%`;
-            document.getElementById('similarityPercent').textContent = `${similarity}%`;
+            // Display customizations if available
+            const customizationsDiv = document.getElementById('customizations');
+            const customizationsList = document.getElementById('customizationsList');
             
-            // Determine similarity description
-            let similarityDesc = '';
-            if (similarity >= 95) {
-                similarityDesc = 'Practically Identical!';
-            } else if (similarity >= 85) {
-                similarityDesc = 'Very Close Match';
-            } else if (similarity >= 70) {
-                similarityDesc = 'Good Alternative';
-            } else if (similarity >= 50) {
-                similarityDesc = 'Similar Flavor Profile';
+            if (selectedDrink.customizations) {
+                customizationsDiv.style.display = 'block';
+                customizationsList.innerHTML = '';
+                
+                for (const [key, options] of Object.entries(selectedDrink.customizations)) {
+                    const customDiv = document.createElement('div');
+                    customDiv.className = 'customization-options';
+                    customDiv.innerHTML = `<strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong> `;
+                    
+                    options.forEach((option, index) => {
+                        const span = document.createElement('span');
+                        span.style.marginRight = '10px';
+                        if (option.includes('FREE')) {
+                            span.innerHTML = option.replace('(FREE)', '<span class="free-tag">FREE</span>');
+                        } else if (option.includes('+$')) {
+                            span.innerHTML = option;
+                            span.style.color = '#b44444';
+                        } else {
+                            span.textContent = option;
+                        }
+                        if (index < options.length - 1) span.textContent += ' • ';
+                        customDiv.appendChild(span);
+                    });
+                    
+                    customizationsList.appendChild(customDiv);
+                }
             } else {
-                similarityDesc = 'Different but Saves Money';
+                customizationsDiv.style.display = 'none';
             }
-            document.getElementById('similarityDesc').textContent = similarityDesc;
 
             // Update breakdowns
             document.getElementById('originalBreakdown').innerHTML = `

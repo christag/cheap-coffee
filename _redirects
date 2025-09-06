@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects file
+# This file is intentionally minimal since we have a single-page app
+
+# Optional: Redirect common typos or alternative paths to home
+/home / 301
+/index / 301

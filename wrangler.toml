@@ -1,0 +1,9 @@
+name = "cheap-coffee"
+compatibility_date = "2024-09-01"
+
+[site]
+bucket = "./"
+
+[[build]]
+command = ""
+watch_paths = ["index.html", "research.md"]

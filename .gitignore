@@ -1,1 +1,8 @@
-research.md
+node_modules/
+.DS_Store
+*.log
+dist/
+.env
+.env.local
+.wrangler/
+package-lock.json
