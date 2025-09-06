@@ -1339,14 +1339,17 @@
             const drinkSelect = document.getElementById('drinkSelect');
             drinkSelect.innerHTML = '<option value="">-- Select a drink to see savings --</option>';
             
-            for (const [key, drink] of Object.entries(drinks)) {
-                if (category === 'all' || drink.category === category) {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.textContent = censorDrinkName(drink.name);
-                    drinkSelect.appendChild(option);
-                }
-            }
+            // Get filtered drinks and sort alphabetically by name
+            const filteredDrinks = Object.entries(drinks)
+                .filter(([key, drink]) => category === 'all' || drink.category === category)
+                .sort(([keyA, drinkA], [keyB, drinkB]) => drinkA.name.localeCompare(drinkB.name));
+            
+            filteredDrinks.forEach(([key, drink]) => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = censorDrinkName(drink.name);
+                drinkSelect.appendChild(option);
+            });
         }
         
         // Initial population
