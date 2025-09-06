@@ -84,13 +84,6 @@ We love contributions! This project thrives on community input and we're always 
 5. **Push to your branch** (`git push origin feature/amazing-hack`)
 6. **Open a Pull Request**
 
-### 💰 Bounty Program
-
-We're so confident in the value of community contributions that we offer:
-- **$10 Amazon gift card** for each new drink hack that saves $1+ 
-- **$25 Amazon gift card** for major feature improvements
-- **$50 Amazon gift card** for discovering pricing errors that affect 5+ drinks
-
 ### 📧 Quick Contributions
 
 Don't want to code? No problem!
