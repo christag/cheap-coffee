@@ -41,3 +41,16 @@ Since this is a static HTML file with no build process:
 - **Test changes**: Refresh the browser after editing
 - **Add new drinks**: Update the `drinks` object in the JavaScript section following the existing structure
 - **Modify styling**: Edit the inline CSS in the `<style>` tag
+
+
+<!-- MEMPALACE-V2 -->
+## MemPalace Memory (cheap-coffee)
+
+This ecosystem uses the **`cheap-coffee`** palace for shared long-term memory across its agents.
+
+- **Your MCP namespace:** `mcp__mempal-cheap-coffee__*` — use these tools (do NOT use other ecosystems' mempal-* tools) for all palace operations.
+- **Wings (one per agent + shared):** product, menu-intel, auditor, shared
+- **Storage:** `~/.mempalace/palaces/cheap-coffee/`
+- **Auto-save hooks** are wired in `~/.claude/settings.json` (Stop + PreCompact). When they fire, save key topics, decisions, quotes, and code into the appropriate wing of the `cheap-coffee` palace using verbatim quotes where possible, then continue.
+- **Cross-ecosystem isolation:** do NOT save context from this ecosystem into other palaces, and do NOT search other palaces for context — they are intentionally separate concerns.
+- MemPalace is **additive** to the per-agent `memory.md` system. Use `memory.md` for short scannable corrections/preferences; use MemPalace for full conversation context, decisions, and searchable long-form recall.

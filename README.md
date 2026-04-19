@@ -1,18 +1,18 @@
 # Cheap Coffee ☕ 
 ### cheap-coffee.com
 
-Save 40-60% on popular coffee chain drinks with smart ordering hacks! This web app reveals money-saving alternatives for popular coffee shop beverages using the latest September 2025 pricing and free customization options.
+Save 40-60% on popular coffee chain drinks with smart ordering hacks! This web app reveals money-saving alternatives for popular coffee shop beverages using the latest April 2026 pricing and free customization options.
 
-**29 drinks with money-saving hacks** • **Multiple variant options** • **100% free to use**
+**38 drinks with money-saving hacks** • **Multiple variant options** • **100% free to use**
 
 ## Features
 
-- 💰 **Real Savings**: Compare menu prices with hack alternatives (save $0.50-$2.50+ per drink)
+- 💰 **Real Savings**: Compare menu prices with hack alternatives (save up to $2.50+ per drink)
 - 🎨 **Free Customizations**: See all available free options (milk alternatives, syrups, toppings)
-- 📊 **2025 Pricing**: Updated with latest coffee shop prices and seasonal menu
-- 🍂 **Seasonal Drinks**: Includes Fall 2025 menu items (pumpkin & pecan flavors)
+- 📊 **2026 Pricing**: Updated with latest coffee shop prices and seasonal menu
+- 🌸 **Seasonal Drinks**: Includes Spring 2026 menu items (lavender, toasted coconut, ube, mango cream)
 - 📱 **Mobile Responsive**: Works perfectly on all devices
-- 🔍 **Category Filters**: Browse by drink type (Fall Seasonal, Core Espresso, Shaken Espresso, Tea, Cold Brew)
+- 🔍 **Category Filters**: Browse by drink type (Spring Seasonal, Core Espresso, Shaken Espresso, Tea, Cold Brew, Refreshers, Energy Refreshers)
 - ⚡ **Multiple Variants**: Choose between "Exact Recipe" (100% similarity) or "Maximum Savings" options
 - 📋 **Similarity Scoring**: See how close each hack matches the original (50-100%)
 

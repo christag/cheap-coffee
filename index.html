@@ -523,19 +523,20 @@
         <header>
             <h1>☕ Cheap Coffee ☕</h1>
             <p class="subtitle">Save 40-60% on popular coffee chain drinks with smart ordering hacks!</p>
-            <p class="subtitle" style="font-size: 0.9em; margin-top: 5px;">Updated February 2026 - Based on major coffee chain pricing</p>
+            <p class="subtitle" style="font-size: 0.9em; margin-top: 5px;">Updated April 2026 - Based on major coffee chain pricing</p>
         </header>
 
         <div class="selector-section">
             <label for="categorySelect">Filter by Category:</label>
             <select id="categorySelect" style="margin-bottom: 15px;">
                 <option value="all">All Drinks</option>
-                <option value="Winter Seasonal">❄️ Winter Seasonal</option>
-                <option value="Valentine's Limited Time">💕 Valentine's Limited Time</option>
+                <option value="Spring Seasonal">🌸 Spring Seasonal</option>
                 <option value="Core Espresso">☕ Core Espresso</option>
                 <option value="Shaken Espresso">🧊 Shaken Espresso</option>
                 <option value="Tea">🍵 Tea Drinks</option>
                 <option value="Cold Brew">🧊 Cold Brew</option>
+                <option value="Refreshers">🍹 Refreshers</option>
+                <option value="Energy Refreshers">⚡ Energy Refreshers</option>
             </select>
             
             <label for="drinkSelect">Choose Your Favorite Drink:</label>
@@ -610,7 +611,7 @@
         </div>
 
         <footer class="footer">
-            <p>Prices updated February 2026. Your location may vary ±$0.50.</p>
+            <p>Prices updated April 2026. Your location may vary ±$0.50.</p>
             <p style="margin-top: 5px; font-size: 0.8em;">Non-dairy milks (oat, almond, soy, coconut) are FREE! Adding ANY combo of syrups = flat $0.80 fee.</p>
             
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e8dfd0;">
@@ -654,7 +655,7 @@
             return name;
         }
 
-        // Comprehensive drink database with February 2026 pricing and ingredients
+        // Comprehensive drink database with Spring 2026 pricing and ingredients
         // Pump patterns: Hot drinks 2/3/4/5 pumps (short/tall/grande/venti)
         // Iced drinks 3/4/6/7 pumps (tall/grande/venti/trenta)
         // Espresso shots: Hot 1/1/2/2, Iced 1/2/3
@@ -662,7 +663,7 @@
         const drinks = {
             'pistachio_latte': {
                 name: 'Pistachio Latte',
-                category: 'Winter Seasonal',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['1 shot espresso', '3 pumps pistachio sauce', 'Steamed 2% milk', 'Salted brown butter cookie topping'],
                     grande: ['2 shots espresso', '4 pumps pistachio sauce', 'Steamed 2% milk', 'Salted brown butter cookie topping'],
@@ -677,22 +678,23 @@
                     pumps: ['Standard pumps', 'Half-sweet', 'Extra pumps (+1-2)']
                 },
                 hack: {
-                    base: 'Caffè Latte',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
+                    base: 'Americano',
+                    basePrices: { tall: 4.25, grande: 4.75, venti: 5.25 },
                     similarity: 70,
                     additions: [{ item: 'Toffee nut syrup', price: 0.80 }],
                     steps: [
-                        'Order a [SIZE] Caffè Latte',
+                        'Order a [SIZE] Americano',
                         'Add toffee nut syrup (+$0.80 flat fee)',
-                        'Ask for cinnamon topping (FREE)',
-                        'Request caramel drizzle for nuttiness (FREE)',
-                        'Similar nutty-sweet profile for less!'
+                        'Ask for steamed milk instead of water (FREE)',
+                        'Request cinnamon topping (FREE)',
+                        'Add caramel drizzle for nuttiness (FREE)',
+                        'Saves $1.20+ with similar nutty-sweet profile!'
                     ]
                 }
             },
             'iced_pistachio_latte': {
                 name: 'Iced Pistachio Latte',
-                category: 'Winter Seasonal',
+                category: 'Core Espresso',
                 ingredients: {
                     tall: ['1 shot espresso', '3 pumps pistachio sauce', 'Cold 2% milk', 'Ice', 'Salted brown butter cookie topping'],
                     grande: ['2 shots espresso', '4 pumps pistachio sauce', 'Cold 2% milk', 'Ice', 'Salted brown butter cookie topping'],
@@ -706,22 +708,23 @@
                     pumps: ['Standard pumps', 'Half-sweet', 'Extra pumps']
                 },
                 hack: {
-                    base: 'Iced Caffè Latte',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
+                    base: 'Iced Americano',
+                    basePrices: { tall: 4.25, grande: 4.75, venti: 5.05 },
                     similarity: 70,
                     additions: [{ item: 'Toffee nut syrup', price: 0.80 }],
                     steps: [
-                        'Order an [SIZE] Iced Caffè Latte',
+                        'Order an [SIZE] Iced Americano',
                         'Add toffee nut syrup (+$0.80 flat fee)',
+                        'Add milk from condiment bar (FREE)',
                         'Ask for caramel drizzle (FREE)',
                         'Request cinnamon topping (FREE)',
-                        'Similar nutty flavor for less!'
+                        'Saves $0.80+ with similar nutty flavor!'
                     ]
                 }
             },
             'pistachio_cream_cold_brew': {
                 name: 'Pistachio Cream Cold Brew',
-                category: 'Winter Seasonal',
+                category: 'Cold Brew',
                 ingredients: {
                     tall: ['Cold brew coffee', '2 pumps vanilla syrup', 'Pistachio sweet cream cold foam', 'Salted brown butter cookie topping'],
                     grande: ['Cold brew coffee', '3 pumps vanilla syrup', 'Pistachio sweet cream cold foam', 'Salted brown butter cookie topping'],
@@ -736,69 +739,14 @@
                 hack: {
                     base: 'Cold Brew',
                     basePrices: { tall: 4.65, grande: 5.15, venti: 5.65 },
-                    similarity: 80,
+                    similarity: 70,
+                    additions: [{ item: 'Vanilla sweet cream cold foam', price: 1.25 }],
                     steps: [
                         'Order a [SIZE] Cold Brew',
-                        'Ask for vanilla sweet cream cold foam (FREE)',
+                        'Add vanilla sweet cream cold foam (+$1.25)',
                         'Add caramel drizzle on top of foam (FREE)',
                         'Request cinnamon topping (FREE)',
-                        'Saves ~$1 with similar creamy cold brew!'
-                    ]
-                }
-            },
-            'dubai_chocolate_matcha': {
-                name: 'Iced Dubai Chocolate Matcha',
-                category: 'Winter Seasonal',
-                ingredients: {
-                    tall: ['2 scoops matcha powder', '2 pumps pistachio sauce', 'Cold 2% milk', 'Ice', 'Chocolate cream cold foam', 'Salted brown butter cookie topping'],
-                    grande: ['3 scoops matcha powder', '3 pumps pistachio sauce', 'Cold 2% milk', 'Ice', 'Chocolate cream cold foam', 'Salted brown butter cookie topping'],
-                    venti: ['4 scoops matcha powder', '4 pumps pistachio sauce', 'Cold 2% milk', 'Ice', 'Chocolate cream cold foam', 'Salted brown butter cookie topping']
-                },
-                prices: { tall: 5.95, grande: 6.35, venti: 6.75 },
-                customizations: {
-                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
-                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
-                    foam: ['Chocolate foam (default)', 'Extra foam', 'Light foam']
-                },
-                hack: {
-                    base: 'Iced Matcha Tea Latte',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 7.05 },
-                    similarity: 70,
-                    additions: [{ item: 'Mocha drizzle + toffee nut syrup', price: 0.80 }],
-                    steps: [
-                        'Order an [SIZE] Iced Matcha Tea Latte',
-                        'Add toffee nut syrup (+$0.80 flat - covers all syrups)',
-                        'Ask for mocha drizzle (FREE with syrup fee already paid)',
-                        'Request vanilla sweet cream cold foam (FREE)',
-                        'Similar matcha-chocolate-nutty combo for less!'
-                    ]
-                }
-            },
-            'dubai_chocolate_mocha': {
-                name: 'Iced Dubai Chocolate Mocha',
-                category: 'Winter Seasonal',
-                ingredients: {
-                    tall: ['1 shot espresso', '3 pumps mocha sauce', 'Cold 2% milk', 'Ice', 'Pistachio cream cold foam', 'Salted brown butter cookie topping'],
-                    grande: ['2 shots espresso', '4 pumps mocha sauce', 'Cold 2% milk', 'Ice', 'Pistachio cream cold foam', 'Salted brown butter cookie topping'],
-                    venti: ['3 shots espresso', '6 pumps mocha sauce', 'Cold 2% milk', 'Ice', 'Pistachio cream cold foam', 'Salted brown butter cookie topping']
-                },
-                prices: { tall: 6.75, grande: 7.25, venti: 7.65 },
-                customizations: {
-                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
-                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf'],
-                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
-                    foam: ['Pistachio foam (default)', 'Extra foam', 'Light foam']
-                },
-                hack: {
-                    base: 'Iced Caffè Mocha',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
-                    similarity: 75,
-                    steps: [
-                        'Order an [SIZE] Iced Caffè Mocha',
-                        'Ask for vanilla sweet cream cold foam (FREE)',
-                        'Request caramel drizzle on top (FREE)',
-                        'Add cinnamon topping (FREE)',
-                        'Similar chocolate-nutty profile, saves $1+!'
+                        'Tight margin on tall; grande/venti actually cost more — skip the foam to save'
                     ]
                 }
             },
@@ -868,8 +816,8 @@
                         steps: [
                             'Order a [SIZE] Caffè Latte',
                             'Ask for caramel drizzle on top and bottom (FREE)',
-                            'Request vanilla powder from condiment bar (FREE)',
-                            'Or ask for vanilla in the steamed milk (FREE)',
+                            'Add cinnamon powder from condiment bar (FREE)',
+                            'Note: true vanilla flavor requires +$0.80 syrup',
                             'Nearly identical for $0.50 less!'
                         ]
                     }
@@ -891,72 +839,34 @@
                     whip: ['With whip (default)', 'No whip', 'Extra whip'],
                     pumps: ['Standard white chocolate', 'Half-sweet', 'Extra pumps']
                 },
-                hack: {
-                    base: 'Caffè Latte',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
-                    additions: [{ item: '2 pumps white chocolate', price: 0.80 }],
-                    steps: [
-                        'Order a [SIZE] Caffè Latte',
-                        'Add 2 pumps white chocolate sauce (+$0.80 flat fee)',
-                        'Ask for whipped cream (FREE)',
-                        'Still saves money even with syrup charge!'
-                    ]
-                }
-            },
-            'white_choc_strawberry_cold_brew': {
-                name: 'White Chocolate Strawberry Cream Cold Brew',
-                category: "Valentine's Limited Time",
-                ingredients: {
-                    tall: ['Cold brew coffee', '2 pumps vanilla syrup', 'White chocolate strawberry cream cold foam', 'Chocolate curls'],
-                    grande: ['Cold brew coffee', '3 pumps vanilla syrup', 'White chocolate strawberry cream cold foam', 'Chocolate curls'],
-                    venti: ['Cold brew coffee', '4 pumps vanilla syrup', 'White chocolate strawberry cream cold foam', 'Chocolate curls']
-                },
-                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
-                customizations: {
-                    sweetness: ['Standard vanilla', 'No vanilla', 'Half-sweet', 'Extra vanilla'],
-                    ice: ['Standard ice', 'Light ice', 'No ice', 'Extra ice'],
-                    foam: ['Standard strawberry foam', 'Extra foam', 'Light foam']
-                },
-                hack: {
-                    base: 'Cold Brew',
-                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.65 },
-                    similarity: 75,
-                    additions: [{ item: 'White mocha sauce', price: 0.80 }],
-                    steps: [
-                        'Order a [SIZE] Cold Brew',
-                        'Add white mocha sauce (+$0.80 flat fee)',
-                        'Ask for vanilla sweet cream cold foam (FREE)',
-                        'Request strawberry drizzle if available (FREE)',
-                        'Add cocoa powder on top (FREE)',
-                        'Similar sweet-berry cold brew for $0.50+ less!'
-                    ]
-                }
-            },
-            'strawberry_shortcake_frapp': {
-                name: 'Strawberry Shortcake Frappuccino',
-                category: "Valentine's Limited Time",
-                ingredients: {
-                    tall: ['Creme Frappuccino base', 'Strawberry puree', '2 pumps cinnamon dolce syrup', 'Whole milk', 'Ice', 'Whipped cream', 'Caramel-sugar sprinkle'],
-                    grande: ['Creme Frappuccino base', 'Strawberry puree', '3 pumps cinnamon dolce syrup', 'Whole milk', 'Ice', 'Whipped cream', 'Caramel-sugar sprinkle'],
-                    venti: ['Creme Frappuccino base', 'Strawberry puree', '4 pumps cinnamon dolce syrup', 'Whole milk', 'Ice', 'Whipped cream', 'Caramel-sugar sprinkle']
-                },
-                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
-                customizations: {
-                    milk: ['Whole (default)', '2%', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
-                    whip: ['With whip (default)', 'No whip', 'Extra whip']
-                },
-                hack: {
-                    base: 'Strawberry Creme Frappuccino',
-                    basePrices: { tall: 4.95, grande: 5.45, venti: 5.95 },
-                    similarity: 85,
-                    steps: [
-                        'Order a [SIZE] Strawberry Creme Frappuccino',
-                        'Ask for cinnamon dolce topping (FREE)',
-                        'Request whipped cream (FREE)',
-                        'Add caramel drizzle (FREE)',
-                        'Very similar shortcake flavor for $0.50 less!'
-                    ]
-                }
+                hacks: [
+                    {
+                        name: 'Closest Match',
+                        base: 'Caffè Mocha',
+                        basePrices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                        similarity: 95,
+                        steps: [
+                            'Order a [SIZE] Caffè Mocha',
+                            'Ask to swap mocha sauce for white mocha sauce (FREE substitution)',
+                            'Request whipped cream (FREE)',
+                            'Nearly identical drink — saves $1.00!'
+                        ]
+                    },
+                    {
+                        name: 'Maximum Savings',
+                        base: 'Americano',
+                        basePrices: { tall: 4.25, grande: 4.75, venti: 5.25 },
+                        similarity: 80,
+                        additions: [{ item: 'White chocolate sauce', price: 0.80 }],
+                        steps: [
+                            'Order a [SIZE] Americano',
+                            'Add white chocolate sauce (+$0.80 flat fee)',
+                            'Ask for steamed milk instead of water (FREE)',
+                            'Request whipped cream (FREE)',
+                            'Saves $1.20 with same white mocha flavor!'
+                        ]
+                    }
+                ]
             },
             'iced_double_berry_matcha': {
                 name: 'Iced Double Berry Matcha',
@@ -975,13 +885,13 @@
                 hack: {
                     base: 'Iced Matcha Tea Latte',
                     basePrices: { tall: 5.75, grande: 6.25, venti: 7.05 },
-                    similarity: 75,
+                    similarity: 60,
                     steps: [
                         'Order an [SIZE] Iced Matcha Tea Latte',
                         'Ask for strawberry puree blended in (FREE)',
-                        'Request vanilla sweet cream cold foam (FREE)',
-                        'Add raspberry syrup to foam if available (FREE swap)',
-                        'Similar berry-matcha layers for same price or less!'
+                        'Skip the cold foam — adding VSCCF costs +$1.25, wipes out savings',
+                        'Add raspberry syrup to base if available (FREE swap)',
+                        'Base matcha + strawberry — you lose the foam layer but save money'
                     ]
                 }
             },
@@ -1002,15 +912,14 @@
                 hack: {
                     base: 'Iced Matcha Tea Latte',
                     basePrices: { tall: 5.75, grande: 6.25, venti: 7.05 },
-                    similarity: 70,
-                    additions: [{ item: 'Brown sugar syrup', price: 0.80 }],
+                    similarity: 55,
                     steps: [
                         'Order an [SIZE] Iced Matcha Tea Latte',
-                        'Add brown sugar syrup (+$0.80 flat fee)',
-                        'Ask for vanilla sweet cream cold foam (FREE)',
-                        'Request caramel drizzle on foam (FREE)',
+                        'Add brown sugar packets from condiment bar (FREE)',
+                        'Skip the cold foam — VSCCF adds +$1.25 and wipes out savings',
+                        'Request caramel drizzle on base (FREE)',
                         'Add cinnamon topping (FREE)',
-                        'Similar warm-sweet matcha for same price or less!'
+                        'Base matcha with sweet/warm notes — no foam layer but you actually save'
                     ]
                 }
             },
@@ -1031,8 +940,8 @@
                         'Order a [SIZE] Americano',
                         'Ask for it in a larger cup',
                         'Add milk from the condiment bar (restored Jan 2025!)',
-                        'Stir in vanilla-flavored whipped cream (FREE)',
-                        'Or add FREE vanilla powder from condiment station'
+                        'Add cinnamon powder from condiment bar (FREE)',
+                        'Note: true vanilla flavor requires +$0.80 syrup'
                     ]
                 }
             },
@@ -1055,7 +964,7 @@
                         'Add mocha syrup (+$0.80 flat fee)',
                         'Ask for extra steamed milk (FREE)',
                         'Top with whipped cream (FREE)',
-                        'Saves you over $1 even with syrup charge!'
+                        'Saves you $0.20 even with the syrup charge'
                     ]
                 }
             },
@@ -1063,9 +972,9 @@
                 name: 'Chai Tea Latte',
                 category: 'Tea',
                 ingredients: {
-                    tall: ['Chai concentrate (1:1 ratio)', 'Steamed 2% milk', 'Light foam'],
-                    grande: ['Chai concentrate (1:1 ratio)', 'Steamed 2% milk', 'Light foam'],
-                    venti: ['Chai concentrate (1:1 ratio)', 'Steamed 2% milk', 'Light foam']
+                    tall: ['Premium chai blend (black tea, cinnamon, clove, cardamom, ginger, honey)', '3 pumps classic syrup', 'Steamed 2% milk', 'Light foam'],
+                    grande: ['Premium chai blend (black tea, cinnamon, clove, cardamom, ginger, honey)', '4 pumps classic syrup', 'Steamed 2% milk', 'Light foam'],
+                    venti: ['Premium chai blend (black tea, cinnamon, clove, cardamom, ginger, honey)', '5 pumps classic syrup', 'Steamed 2% milk', 'Light foam']
                 },
                 prices: { tall: 5.55, grande: 6.05, venti: 6.55 },
                 customizations: {
@@ -1091,9 +1000,9 @@
                 name: 'Iced Chai Tea Latte',
                 category: 'Tea',
                 ingredients: {
-                    tall: ['Chai concentrate', 'Cold 2% milk', 'Ice'],
-                    grande: ['Chai concentrate', 'Cold 2% milk', 'Ice'],
-                    venti: ['Chai concentrate', 'Cold 2% milk', 'Ice']
+                    tall: ['Premium chai blend (black tea, cinnamon, clove, cardamom, ginger, honey)', '3 pumps classic syrup', 'Cold 2% milk', 'Ice'],
+                    grande: ['Premium chai blend (black tea, cinnamon, clove, cardamom, ginger, honey)', '4 pumps classic syrup', 'Cold 2% milk', 'Ice'],
+                    venti: ['Premium chai blend (black tea, cinnamon, clove, cardamom, ginger, honey)', '6 pumps classic syrup', 'Cold 2% milk', 'Ice']
                 },
                 prices: { tall: 5.55, grande: 6.05, venti: 6.55 },
                 customizations: {
@@ -1150,7 +1059,7 @@
                     steps: [
                         'Order [SIZE] iced espresso shots in a venti cup',
                         'Add milk from condiment bar (restored!)',
-                        'Stir in vanilla powder (FREE at condiment station)',
+                        'Dust with cinnamon powder from condiment bar (FREE)',
                         'Ask barista for caramel drizzle (usually FREE)',
                         'Huge savings with same taste profile!'
                     ]
@@ -1186,17 +1095,37 @@
                     venti: ['Cinnamon dolce syrup (5 pumps)', '2 shots espresso', 'Steamed 2% milk', 'Whipped cream', 'Cinnamon dolce topping']
                 },
                 prices: { tall: 5.75, grande: 6.25, venti: 6.75 },
-                hack: {
-                    base: 'Caffè Latte',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
-                    steps: [
-                        'Order a [SIZE] Caffè Latte',
-                        'Ask for whipped cream (FREE)',
-                        'Request cinnamon powder mixed in and on top (FREE)',
-                        'Sweeten with raw sugar packets for dolce flavor',
-                        'Nearly identical taste without the syrup upcharge!'
-                    ]
-                }
+                hacks: [
+                    {
+                        name: 'Exact Recipe',
+                        base: 'Americano',
+                        basePrices: { tall: 4.25, grande: 4.75, venti: 5.25 },
+                        similarity: 85,
+                        additions: [{ item: 'Cinnamon dolce syrup', price: 0.80 }],
+                        steps: [
+                            'Order a [SIZE] Americano',
+                            'Add cinnamon dolce syrup (+$0.80 flat fee)',
+                            'Ask for steamed milk instead of water (FREE)',
+                            'Request whipped cream (FREE)',
+                            'Add cinnamon topping (FREE)',
+                            'Same syrup, same toppings — saves $0.70!'
+                        ]
+                    },
+                    {
+                        name: 'Maximum Savings',
+                        base: 'Americano',
+                        basePrices: { tall: 4.25, grande: 4.75, venti: 5.25 },
+                        similarity: 70,
+                        steps: [
+                            'Order a [SIZE] Americano',
+                            'Ask for steamed milk instead of water (FREE)',
+                            'Add cinnamon from condiment bar (FREE)',
+                            'Sweeten with raw sugar packets (FREE)',
+                            'Request whipped cream (FREE)',
+                            'Saves $1.50 with real cinnamon + sugar!'
+                        ]
+                    }
+                ]
             },
             'cappuccino': {
                 name: 'Cappuccino',
@@ -1235,8 +1164,8 @@
                         'Order an [SIZE] Iced Americano',
                         'Ask for room for milk',
                         'Add milk from condiment bar (restored!)',
-                        'Use vanilla powder from condiment station (FREE)',
-                        'Or ask for vanilla in whipped cream stirred in (FREE)'
+                        'Add cinnamon powder from condiment bar (FREE)',
+                        'Note: true vanilla flavor requires +$0.80 syrup'
                     ]
                 }
             },
@@ -1391,18 +1320,37 @@
                     whip: ['With whip (default)', 'No whip', 'Extra whip'],
                     pumps: ['Standard cinnamon dolce', 'Half-sweet', 'Extra pumps']
                 },
-                hack: {
-                    base: 'Iced Caffè Latte',
-                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
-                    similarity: 85,
-                    steps: [
-                        'Order a [SIZE] Iced Caffè Latte',
-                        'Ask for whipped cream (FREE)',
-                        'Request cinnamon powder mixed in and on top (FREE)',
-                        'Add brown sugar packets for dolce sweetness (FREE)',
-                        'Nearly identical taste without the syrup upcharge!'
-                    ]
-                }
+                hacks: [
+                    {
+                        name: 'Exact Recipe',
+                        base: 'Iced Americano',
+                        basePrices: { tall: 4.25, grande: 4.75, venti: 5.05 },
+                        similarity: 85,
+                        additions: [{ item: 'Cinnamon dolce syrup', price: 0.80 }],
+                        steps: [
+                            'Order an [SIZE] Iced Americano',
+                            'Add cinnamon dolce syrup (+$0.80 flat fee)',
+                            'Add milk from condiment bar (FREE)',
+                            'Request whipped cream (FREE)',
+                            'Add cinnamon topping (FREE)',
+                            'Same syrup, same toppings — saves $0.70+!'
+                        ]
+                    },
+                    {
+                        name: 'Maximum Savings',
+                        base: 'Iced Americano',
+                        basePrices: { tall: 4.25, grande: 4.75, venti: 5.05 },
+                        similarity: 70,
+                        steps: [
+                            'Order an [SIZE] Iced Americano',
+                            'Add milk from condiment bar (FREE)',
+                            'Add cinnamon from condiment bar (FREE)',
+                            'Sweeten with sugar packets (FREE)',
+                            'Request whipped cream (FREE)',
+                            'Saves $1.50+ with real cinnamon + sugar!'
+                        ]
+                    }
+                ]
             },
             'iced_chocolate_almondmilk': {
                 name: 'Iced Chocolate Almondmilk Shaken Espresso',
@@ -1479,11 +1427,11 @@
                 hack: {
                     base: 'Hot Tea',
                     basePrices: { tall: 3.15, grande: 3.45, venti: 3.65 },
-                    additions: [{ item: 'Matcha powder', price: 1.00 }],
+                    additions: [{ item: 'Matcha powder (2 scoops)', price: 2.00 }],
                     similarity: 75,
                     steps: [
                         'Order a [SIZE] hot water',
-                        'Ask for 2 scoops matcha powder (+$1.00/scoop)',
+                        'Ask for 2 scoops matcha powder (+$1.00/scoop = $2.00)',
                         'Add steamed milk (specify type - all FREE)',
                         'Sweeten with honey packets (FREE)',
                         'Mix well for smooth consistency'
@@ -1507,14 +1455,308 @@
                 hack: {
                     base: 'Iced Tea',
                     basePrices: { tall: 3.15, grande: 3.45, venti: 3.65 },
-                    additions: [{ item: 'Matcha powder', price: 1.00 }],
+                    additions: [{ item: 'Matcha powder (2 scoops)', price: 2.00 }],
                     similarity: 75,
                     steps: [
                         'Order a [SIZE] iced water',
-                        'Ask for 2 scoops matcha powder (+$1.00/scoop)',
+                        'Ask for 2 scoops matcha powder (+$1.00/scoop = $2.00)',
                         'Add cold milk (specify type - all FREE)',
                         'Sweeten with liquid cane sugar packets (FREE)',
                         'Ask for extra stirring for smooth consistency'
+                    ]
+                }
+            },
+            'toasted_coconut_cream_cold_brew': {
+                name: 'Toasted Coconut Cream Cold Brew',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['Cold brew coffee', '2 pumps toasted coconut syrup', 'Toasted coconut cream cold foam'],
+                    grande: ['Cold brew coffee', '3 pumps toasted coconut syrup', 'Toasted coconut cream cold foam'],
+                    venti: ['Cold brew coffee', '4 pumps toasted coconut syrup', 'Toasted coconut cream cold foam']
+                },
+                prices: { tall: 5.45, grande: 5.95, venti: 6.45 },
+                customizations: {
+                    ice: ['Standard ice', 'Light ice', 'No ice', 'Extra ice'],
+                    sweetness: ['Standard sweet', 'Half-sweet', 'No sweetener'],
+                    foam: ['Standard coconut foam', 'Extra foam', 'Light foam']
+                },
+                hack: {
+                    base: 'Cold Brew',
+                    basePrices: { tall: 4.65, grande: 5.15, venti: 5.65 },
+                    similarity: 55,
+                    steps: [
+                        'Order a [SIZE] Cold Brew',
+                        'Ask for coconut milk splash (FREE)',
+                        'Skip the cold foam — VSCCF adds +$1.25 and makes the hack cost more than the original',
+                        'Add cinnamon topping (FREE)',
+                        'Coconut splash + cinnamon — no foam layer, but you actually save $0.55-$0.80'
+                    ]
+                }
+            },
+            'toasted_coconut_latte': {
+                name: 'Toasted Coconut Latte',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['1 shot espresso', '3 pumps toasted coconut syrup', 'Steamed 2% milk'],
+                    grande: ['2 shots espresso', '4 pumps toasted coconut syrup', 'Steamed 2% milk'],
+                    venti: ['2 shots espresso', '5 pumps toasted coconut syrup', 'Steamed 2% milk']
+                },
+                prices: { tall: 6.15, grande: 6.85, venti: 7.35 },
+                customizations: {
+                    milk: ['2% (default)', 'Nonfat', 'Whole', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf'],
+                    temperature: ['Standard', 'Kids', 'Extra Hot']
+                },
+                hack: {
+                    base: 'Americano',
+                    basePrices: { tall: 4.25, grande: 4.75, venti: 5.25 },
+                    similarity: 70,
+                    additions: [{ item: 'Vanilla syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Americano',
+                        'Add vanilla syrup (+$0.80 flat fee)',
+                        'Ask for steamed coconut milk instead of water (FREE)',
+                        'Request cinnamon topping (FREE)',
+                        'Vanilla + coconut creates a sweet coconut latte!'
+                    ]
+                }
+            },
+            'lavender_latte': {
+                name: 'Lavender Latte',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['1 shot Blonde Espresso', 'Lavender powder', 'Steamed oat milk'],
+                    grande: ['2 shots Blonde Espresso', 'Lavender powder', 'Steamed oat milk'],
+                    venti: ['2 shots Blonde Espresso', 'Lavender powder', 'Steamed oat milk']
+                },
+                prices: { tall: 6.15, grande: 6.85, venti: 7.35 },
+                customizations: {
+                    milk: ['Oat (default, FREE)', '2%', 'Nonfat', 'Whole', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    roast: ['Blonde Espresso (default)', 'Signature Espresso', 'Decaf'],
+                    temperature: ['Standard', 'Kids', 'Extra Hot']
+                },
+                hack: {
+                    base: 'Americano',
+                    basePrices: { tall: 4.25, grande: 4.75, venti: 5.25 },
+                    similarity: 65,
+                    additions: [{ item: 'Vanilla syrup', price: 0.80 }],
+                    steps: [
+                        'Order a [SIZE] Americano',
+                        'Add vanilla syrup (+$0.80 flat fee)',
+                        'Request Blonde Espresso (FREE roast choice)',
+                        'Ask for steamed oat milk instead of water (FREE)',
+                        'Smooth sweet latte — missing lavender floral notes'
+                    ]
+                }
+            },
+            'iced_lavender_cream_chai': {
+                name: 'Iced Lavender Cream Chai',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['Premium chai blend', '3 pumps classic syrup', 'Cold 2% milk', 'Ice', 'Lavender cream cold foam'],
+                    grande: ['Premium chai blend', '4 pumps classic syrup', 'Cold 2% milk', 'Ice', 'Lavender cream cold foam'],
+                    venti: ['Premium chai blend', '6 pumps classic syrup', 'Cold 2% milk', 'Ice', 'Lavender cream cold foam']
+                },
+                prices: { tall: 5.75, grande: 6.45, venti: 6.95 },
+                customizations: {
+                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    sweetness: ['Standard sweet', 'Half-sweet (fewer classic syrup pumps)', 'No sweetener']
+                },
+                hack: {
+                    base: 'Iced Chai Tea Latte',
+                    basePrices: { tall: 5.55, grande: 6.05, venti: 6.55 },
+                    similarity: 55,
+                    steps: [
+                        'Order an [SIZE] Iced Chai Tea Latte',
+                        'Skip the cold foam — VSCCF adds +$1.25 and makes the hack cost more than the original',
+                        'Adjust classic syrup pumps to taste (FREE)',
+                        'Plain iced chai — missing the lavender foam notes but saves $0.20-$0.40'
+                    ]
+                }
+            },
+            'iced_mango_cream_chai': {
+                name: 'Iced Mango Cream Chai',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['Premium chai blend', '3 pumps classic syrup', 'Mango syrup', 'Cold 2% milk', 'Ice', 'Mango cream cold foam'],
+                    grande: ['Premium chai blend', '4 pumps classic syrup', 'Mango syrup', 'Cold 2% milk', 'Ice', 'Mango cream cold foam'],
+                    venti: ['Premium chai blend', '6 pumps classic syrup', 'Mango syrup', 'Cold 2% milk', 'Ice', 'Mango cream cold foam']
+                },
+                prices: { tall: 5.75, grande: 6.45, venti: 6.95 },
+                customizations: {
+                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    sweetness: ['Standard sweet', 'Half-sweet (fewer classic syrup pumps)', 'No sweetener']
+                },
+                hack: {
+                    base: 'Iced Chai Tea Latte',
+                    basePrices: { tall: 5.55, grande: 6.05, venti: 6.55 },
+                    similarity: 50,
+                    steps: [
+                        'Order an [SIZE] Iced Chai Tea Latte',
+                        'Skip the cold foam — VSCCF adds +$1.25 and makes the hack cost more than the original',
+                        'Add mango syrup if available (+$0.80)',
+                        'Chai + mango syrup — missing the foam but saves money'
+                    ]
+                }
+            },
+            'iced_lavender_cream_matcha': {
+                name: 'Iced Lavender Cream Matcha',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['2 scoops matcha powder', '3 pumps classic syrup', 'Cold 2% milk', 'Ice', 'Lavender cream cold foam'],
+                    grande: ['3 scoops matcha powder', '4 pumps classic syrup', 'Cold 2% milk', 'Ice', 'Lavender cream cold foam'],
+                    venti: ['4 scoops matcha powder', '5 pumps classic syrup', 'Cold 2% milk', 'Ice', 'Lavender cream cold foam']
+                },
+                prices: { tall: 5.95, grande: 6.75, venti: 7.25 },
+                customizations: {
+                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    sweetness: ['Standard sweet', 'Half-sweet', 'No sweetener']
+                },
+                hack: {
+                    base: 'Iced Matcha Tea Latte',
+                    basePrices: { tall: 5.75, grande: 6.25, venti: 7.05 },
+                    similarity: 50,
+                    steps: [
+                        'Order an [SIZE] Iced Matcha Tea Latte',
+                        'Skip the cold foam — VSCCF adds +$1.25 and makes the hack cost more than the original',
+                        'Plain iced matcha base — missing lavender foam but saves $0.20-$0.50 (matches venti price exactly)'
+                    ]
+                }
+            },
+            'iced_mango_cream_matcha': {
+                name: 'Iced Mango Cream Matcha',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['2 scoops matcha powder', '3 pumps classic syrup', 'Mango syrup', 'Cold 2% milk', 'Ice', 'Mango cream cold foam'],
+                    grande: ['3 scoops matcha powder', '4 pumps classic syrup', 'Mango syrup', 'Cold 2% milk', 'Ice', 'Mango cream cold foam'],
+                    venti: ['4 scoops matcha powder', '5 pumps classic syrup', 'Mango syrup', 'Cold 2% milk', 'Ice', 'Mango cream cold foam']
+                },
+                prices: { tall: 5.95, grande: 6.75, venti: 7.25 },
+                customizations: {
+                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)', 'Coconut (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    sweetness: ['Standard sweet', 'Half-sweet', 'No sweetener']
+                },
+                hack: {
+                    base: 'Iced Matcha Tea Latte',
+                    basePrices: { tall: 5.75, grande: 6.25, venti: 7.05 },
+                    similarity: 50,
+                    additions: [{ item: 'Mango syrup', price: 0.80 }],
+                    steps: [
+                        'Order an [SIZE] Iced Matcha Tea Latte',
+                        'Add mango syrup (+$0.80)',
+                        'Skip the cold foam — VSCCF adds +$1.25 and makes the hack cost more than the original',
+                        'Matcha + mango syrup — missing the foam but saves $0.05-$0.30'
+                    ]
+                }
+            },
+            'iced_ube_coconut_macchiato': {
+                name: 'Iced Ube Coconut Macchiato',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['2 pumps toasted coconut syrup', 'Cold 2% milk', 'Ice', '1 shot espresso (poured on top)', 'Ube coconut cream cold foam', 'Toasted coconut flakes'],
+                    grande: ['3 pumps toasted coconut syrup', 'Cold 2% milk', 'Ice', '2 shots espresso (poured on top)', 'Ube coconut cream cold foam', 'Toasted coconut flakes'],
+                    venti: ['4 pumps toasted coconut syrup', 'Cold 2% milk', 'Ice', '3 shots espresso (poured on top)', 'Ube coconut cream cold foam', 'Toasted coconut flakes']
+                },
+                prices: { tall: 6.25, grande: 7.15, venti: 7.65 },
+                customizations: {
+                    milk: ['2% (default)', 'Oat (FREE)', 'Almond (FREE)', 'Coconut (FREE)'],
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice']
+                },
+                hack: {
+                    base: 'Iced Americano',
+                    basePrices: { tall: 4.25, grande: 4.75, venti: 5.05 },
+                    similarity: 65,
+                    additions: [
+                        { item: 'Vanilla syrup', price: 0.80 },
+                        { item: 'Vanilla sweet cream cold foam', price: 1.25 }
+                    ],
+                    steps: [
+                        'Order an [SIZE] Iced Americano',
+                        'Add vanilla syrup (+$0.80)',
+                        'Request coconut milk (FREE)',
+                        'Add vanilla sweet cream cold foam (+$1.25)',
+                        'Tall is a wash; grande/venti save $0.35-$0.55 — skip foam on tall to actually save'
+                    ]
+                }
+            },
+            'iced_ube_coconut_shaken_espresso': {
+                name: 'Iced Ube Coconut Cream Shaken Espresso',
+                category: 'Spring Seasonal',
+                ingredients: {
+                    tall: ['2 shots espresso', 'Toasted coconut syrup', 'Coconut milk', 'Ice', 'Ube coconut cream cold foam'],
+                    grande: ['3 shots espresso', 'Toasted coconut syrup', 'Coconut milk', 'Ice', 'Ube coconut cream cold foam'],
+                    venti: ['4 shots espresso', 'Toasted coconut syrup', 'Coconut milk', 'Ice', 'Ube coconut cream cold foam']
+                },
+                prices: { tall: 6.75, grande: 7.25, venti: 7.75 },
+                customizations: {
+                    roast: ['Signature Espresso (default)', 'Blonde Espresso', 'Decaf'],
+                    milk: ['Coconut (default, FREE)', 'Oat (FREE)', 'Almond (FREE)', 'Soy (FREE)'],
+                    ice: ['Standard ice', 'Light ice', 'Extra ice']
+                },
+                hack: {
+                    base: 'Iced Shaken Espresso',
+                    basePrices: { tall: 5.75, grande: 6.25, venti: 6.75 },
+                    similarity: 50,
+                    steps: [
+                        'Order an [SIZE] Iced Shaken Espresso',
+                        'Ask for coconut milk (FREE swap)',
+                        'Skip the cold foam — VSCCF adds +$1.25 and makes the hack cost more than the original',
+                        'Add cinnamon topping (FREE)',
+                        'Coconut base with espresso — missing ube flavor and foam, saves $1.00 (limited-time drink)'
+                    ]
+                }
+            },
+            'pink_cannon_ball': {
+                name: 'Pink Cannon Ball Drink',
+                category: 'Refreshers',
+                ingredients: {
+                    tall: ['Mango Dragonfruit Refresher base', 'Strawberry Açaí Refresher base', 'Coconut milk', 'Ice', 'Freeze-dried strawberry inclusions', 'Freeze-dried dragonfruit inclusions'],
+                    grande: ['Mango Dragonfruit Refresher base', 'Strawberry Açaí Refresher base', 'Coconut milk', 'Ice', 'Freeze-dried strawberry inclusions', 'Freeze-dried dragonfruit inclusions'],
+                    venti: ['Mango Dragonfruit Refresher base', 'Strawberry Açaí Refresher base', 'Coconut milk', 'Ice', 'Freeze-dried strawberry inclusions', 'Freeze-dried dragonfruit inclusions']
+                },
+                prices: { tall: 4.95, grande: 5.45, venti: 5.95 },
+                customizations: {
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    inclusions: ['Standard inclusions', 'Extra inclusions', 'No inclusions']
+                },
+                hack: {
+                    base: 'Mango Dragonfruit Refresher',
+                    basePrices: { tall: 4.45, grande: 4.95, venti: 5.45 },
+                    similarity: 80,
+                    steps: [
+                        'Order a [SIZE] Mango Dragonfruit Refresher',
+                        'Ask for coconut milk instead of water (FREE swap)',
+                        'Creamy coconut + dragonfruit is the core of this drink!'
+                    ]
+                }
+            },
+            'mango_strawberry_energy_refresher': {
+                name: 'Mango Strawberry Energy Refresher',
+                category: 'Energy Refreshers',
+                ingredients: {
+                    tall: ['Mango Dragonfruit Refresher base', 'Strawberry puree', 'Energy boost (B vitamins + green coffee caffeine, ~140-170mg)', 'Ice'],
+                    grande: ['Mango Dragonfruit Refresher base', 'Strawberry puree', 'Energy boost (B vitamins + green coffee caffeine, ~140-170mg)', 'Ice'],
+                    venti: ['Mango Dragonfruit Refresher base', 'Strawberry puree', 'Energy boost (B vitamins + green coffee caffeine, ~140-170mg)', 'Ice']
+                },
+                prices: { tall: 5.25, grande: 5.75, venti: 6.25 },
+                customizations: {
+                    ice: ['Standard ice', 'Light ice', 'Extra ice'],
+                    inclusions: ['Add strawberry inclusions ($0.50/scoop)']
+                },
+                hack: {
+                    base: 'Mango Dragonfruit Refresher',
+                    basePrices: { tall: 4.45, grande: 4.95, venti: 5.45 },
+                    similarity: 70,
+                    steps: [
+                        'Order a [SIZE] Mango Dragonfruit Refresher',
+                        'Ask to add a splash of strawberry puree (sometimes FREE, sometimes ~$0.50)',
+                        'Skip the energy boost — saves $0.80 but you lose ~140mg caffeine',
+                        'For real energy: pair with a tall hot coffee ($2.95) — still cheaper than the boost on a venti'
                     ]
                 }
             }
@@ -1581,10 +1823,6 @@
             'pistachio_latte': 70,
             'iced_pistachio_latte': 70,
             'pistachio_cream_cold_brew': 80,
-            'dubai_chocolate_matcha': 70,
-            'dubai_chocolate_mocha': 75,
-            'white_choc_strawberry_cold_brew': 75,
-            'strawberry_shortcake_frapp': 85,
             'iced_double_berry_matcha': 75,
             'iced_banana_bread_matcha': 70,
             'caffe_latte': 90,
@@ -1608,7 +1846,17 @@
             'iced_chocolate_almondmilk': 85,
             'americano': 70,
             'matcha_latte': 75,
-            'iced_matcha_latte': 75
+            'iced_matcha_latte': 75,
+            'toasted_coconut_cream_cold_brew': 75,
+            'toasted_coconut_latte': 70,
+            'lavender_latte': 65,
+            'iced_lavender_cream_chai': 75,
+            'iced_lavender_cream_matcha': 75,
+            'iced_mango_cream_chai': 75,
+            'iced_mango_cream_matcha': 75,
+            'iced_ube_coconut_macchiato': 65,
+            'iced_ube_coconut_shaken_espresso': 65,
+            'pink_cannon_ball': 80
         };
 
         function updateDisplay() {
@@ -1715,14 +1963,29 @@
                 });
             }
 
-            const savings = originalPrice - hackPrice;
-            const savingsPercent = Math.round((savings / originalPrice) * 100);
+            const savings = Math.max(0, originalPrice - hackPrice);
+            const savingsPercent = originalPrice > 0 ? Math.round((savings / originalPrice) * 100) : 0;
 
-            // Update price displays
             document.getElementById('originalPrice').textContent = `$${originalPrice.toFixed(2)}`;
             document.getElementById('hackPrice').textContent = `$${hackPrice.toFixed(2)}`;
             document.getElementById('savingsAmount').textContent = `$${savings.toFixed(2)}`;
             document.getElementById('savingsPercent').textContent = `${savingsPercent}%`;
+
+            const savingsBanner = document.querySelector('.savings-banner');
+            if (savings <= 0) {
+                savingsBanner.style.background = 'linear-gradient(135deg, #999 0%, #777 100%)';
+                savingsBanner.textContent = 'No savings at this size — the menu price is already the best deal';
+            } else {
+                savingsBanner.style.background = 'linear-gradient(135deg, #44b444 0%, #339933 100%)';
+                savingsBanner.textContent = '';
+                savingsBanner.appendChild(document.createTextNode('\uD83D\uDCB0 You Save: '));
+                const amountSpan = document.createElement('span');
+                amountSpan.className = 'savings-amount';
+                amountSpan.id = 'savingsAmount';
+                amountSpan.textContent = '$' + savings.toFixed(2);
+                savingsBanner.appendChild(amountSpan);
+                savingsBanner.appendChild(document.createTextNode(' (' + savingsPercent + '%)'));
+            }
 
             // Display customizations if available
             const customizationsDiv = document.getElementById('customizations');
