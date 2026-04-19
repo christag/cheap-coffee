@@ -15,6 +15,10 @@
 /*.js
   Cache-Control: public, max-age=86400
 
+/*.jsx
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=86400
+
 /*.jpg
   Cache-Control: public, max-age=604800
 
