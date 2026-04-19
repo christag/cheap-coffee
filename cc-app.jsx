@@ -4,7 +4,10 @@ const { useState: uS, useEffect: uE, useMemo: uM } = React;
 
 function App() {
   const rawDrinks = uM(() => window.CC.normalizeAll(window.DRINKS_DATA), []);
-  const [direction, setDirection] = uS(() => localStorage.getItem('cc_dir') || 'mix');
+  const [direction, setDirection] = uS(() => {
+    const stored = localStorage.getItem('cc_dir');
+    return ['mix', 'grid', 'zine'].includes(stored) ? stored : 'mix';
+  });
   const [density, setDensity] = uS(() => localStorage.getItem('cc_dens') || 'comfortable');
   const [layout, setLayout] = uS(() => localStorage.getItem('cc_layout') || 'default');
   const [open, setOpen] = uS(null); // drink being viewed
@@ -41,7 +44,7 @@ function App() {
     return () => window.removeEventListener('message', handler);
   }, []);
 
-  const dirComp = { mix: MixDirection, grid: DealGrid, index: HackIndex, zine: ContrabandMenu }[direction] || MixDirection;
+  const dirComp = { mix: MixDirection, grid: DealGrid, zine: ContrabandMenu }[direction] || MixDirection;
 
   return (
     <div className={`app dir-${direction} layout-${layout}`} data-screen-label={`Direction ${direction}`}>
@@ -52,13 +55,6 @@ function App() {
           <span className="brand-name">cheap-coffee</span>
           <span className="brand-dot muted">/</span>
           <span className="brand-sub muted">the menu is a suggestion</span>
-        </div>
-        <div className="topnav-switch">
-          <span className="tag">VIEW</span>
-          <div className="seg">
-            <button className={direction==='mix'?'on':''} onClick={() => setDirection('mix')}>Menu</button>
-            <button className={direction==='index'?'on':''} onClick={() => setDirection('index')}>Index</button>
-          </div>
         </div>
         <div className="topnav-actions">
           <a className="btn ghost" href="#about" onClick={e => { e.preventDefault(); alert('Parody site. No affiliation. All savings hypothetical until executed.'); }}>About</a>
@@ -81,7 +77,6 @@ function App() {
             <div className="seg">
               <button className={direction==='mix'?'on':''} onClick={() => setDirection('mix')}>Mix</button>
               <button className={direction==='grid'?'on':''} onClick={() => setDirection('grid')}>Grid</button>
-              <button className={direction==='index'?'on':''} onClick={() => setDirection('index')}>Index</button>
               <button className={direction==='zine'?'on':''} onClick={() => setDirection('zine')}>Zine</button>
             </div>
           </div>
