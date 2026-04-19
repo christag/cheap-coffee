@@ -1,0 +1,170 @@
+/* ===========================================================
+   CHEAP COFFEE — Redesign
+   Shared design tokens across all three directions
+   =========================================================== */
+
+:root {
+  color-scheme: light;
+  /* Core palette */
+  --ink:        #1A1915;
+  --ink-soft:   #3B3930;
+  --ink-mute:   #6B6658;
+  --paper:      #FAF6EC;
+  --paper-2:    #F4EDE0;
+  --paper-3:    #EBE2CD;
+  --line:       #D8CEB2;
+  --line-soft:  #E5DCC4;
+
+  /* Accents */
+  --olive:      oklch(0.58 0.09 125);
+  --olive-ink:  oklch(0.32 0.06 125);
+  --olive-mute: oklch(0.92 0.03 125);
+  --money:      oklch(0.55 0.14 150);
+  --money-ink:  oklch(0.30 0.10 150);
+  --money-bg:   oklch(0.94 0.05 150);
+  --hazard:     oklch(0.68 0.19 50);
+  --hazard-bg:  oklch(0.94 0.06 50);
+  --receipt:    oklch(0.70 0.16 25);
+
+  /* Scatter plot heat */
+  --heat-cold:  oklch(0.72 0.05 240);
+  --heat-mid:   oklch(0.78 0.13 85);
+  --heat-hot:   oklch(0.65 0.19 30);
+
+  /* Type */
+  --font-serif: "Newsreader", "Georgia", serif;
+  --font-sans:  "Space Grotesk", system-ui, sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, monospace;
+
+  /* Scale */
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 0 rgba(26, 25, 21, 0.04), 0 2px 6px rgba(26, 25, 21, 0.04);
+  --shadow:    0 2px 0 rgba(26, 25, 21, 0.04), 0 8px 24px rgba(26, 25, 21, 0.08);
+  --shadow-lg: 0 4px 0 rgba(26, 25, 21, 0.05), 0 16px 48px rgba(26, 25, 21, 0.12);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  color: #1A1915;
+  background: #FAF6EC;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Monospaced numeric tables */
+.mono, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Underline-accent link */
+a { color: inherit; text-decoration: none; }
+
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+
+/* ========= SHARED UI COMPONENTS ========= */
+
+/* Score badge — two bars */
+.score-bars {
+  display: flex; flex-direction: column; gap: 4px;
+  min-width: 120px;
+}
+.score-bar { display: flex; align-items: center; gap: 6px; font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.score-bar .track { flex: 1; height: 6px; background: var(--paper-3); border-radius: 3px; overflow: hidden; }
+.score-bar .fill { height: 100%; border-radius: 3px; }
+.score-bar .fill.match { background: var(--olive); }
+.score-bar .fill.save  { background: var(--money); }
+.score-bar .val { font-weight: 600; color: var(--ink); min-width: 32px; text-align: right; }
+
+/* Hack rank badge */
+.rank-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 8px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;
+}
+.rank-badge.sss  { background: var(--ink); color: var(--paper); }
+.rank-badge.s    { background: oklch(0.35 0.08 25); color: var(--paper); }
+.rank-badge.a    { background: var(--money-bg); color: var(--money-ink); border: 1px solid var(--money); }
+.rank-badge.b    { background: var(--olive-mute); color: var(--olive-ink); }
+.rank-badge.c    { background: var(--paper-2); color: var(--ink-soft); border: 1px solid var(--line); }
+
+/* Chip */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 12px; font-family: var(--font-sans); letter-spacing: 0.01em;
+  background: var(--paper-2); color: var(--ink-soft);
+  border: 1px solid var(--line-soft);
+  cursor: pointer; transition: all 0.15s;
+}
+.chip:hover { background: var(--paper-3); color: var(--ink); }
+.chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* Button */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; transition: transform 0.1s, background 0.15s; }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.primary:hover { background: var(--olive-ink); }
+.btn.ghost { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
+.btn.ghost:hover { background: var(--paper-2); color: var(--ink); }
+
+/* Tag (tiny label) */
+.tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* Scroll-lock modal */
+.drawer-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(26, 25, 21, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex; justify-content: flex-end;
+  animation: fadeIn 0.2s;
+}
+.drawer {
+  width: min(640px, 100vw); height: 100%;
+  background: var(--paper); overflow-y: auto;
+  animation: slideIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: -12px 0 48px rgba(0,0,0,0.12);
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--paper);
+  padding: 10px 18px; border-radius: 999px;
+  font-size: 13px; font-weight: 500;
+  box-shadow: var(--shadow);
+  animation: toastIn 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 200;
+}
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+/* Utility */
+.stack { display: flex; flex-direction: column; }
+.row   { display: flex; align-items: center; }
+.muted { color: var(--ink-mute); }
+.strike { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--hazard); color: var(--ink-mute); }
+
+/* Tweaks panel */
+.tweaks-panel {
+  position: fixed; bottom: 16px; right: 16px; z-index: 90;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 14px 16px;
+  width: 280px;
+  font-size: 12px;
+}
+.tweaks-panel h4 { margin: 0 0 10px; font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); font-weight: 600; }
+.tweak-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.tweak-row label { font-size: 11px; color: var(--ink-soft); font-weight: 500; }
+.seg { display: inline-flex; background: var(--paper-2); border-radius: var(--radius-sm); padding: 2px; border: 1px solid var(--line-soft); }
+.seg button { padding: 5px 9px; border-radius: 4px; font-size: 11px; color: var(--ink-mute); font-weight: 500; }
+.seg button.on { background: var(--paper); color: var(--ink); box-shadow: var(--shadow-sm); }
