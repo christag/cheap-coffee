@@ -476,12 +476,20 @@
 
 @media (max-width: 780px) {
   .mx-row {
-    grid-template-columns: 48px 1fr;
-    gap: 14px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "num" "body";
+    gap: 6px;
+    padding: 14px 16px;
   }
+  .mx-row-num { grid-area: num; text-align: left; margin: 0; }
   .mx-row-glyph { display: none; }
-  .mx-row-deal { grid-template-columns: 1fr; gap: 10px; }
+  .mx-row-body { grid-area: body; }
+  .mx-row-deal { grid-template-columns: 1fr; gap: 8px; }
   .mx-row-arrow { display: none; }
+  /* Strip down: drop bar charts, save pill, rank badge on mobile list */
+  .mx-row-scores { display: none; }
+  .mx-row-savedollar { display: none; }
+  .mx-row-head > .rank-badge { display: none; }
 }
 
 /* ========= EMPTY ========= */
@@ -537,4 +545,27 @@
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+.mx-colophon-links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.mx-colophon-link {
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.mx-colophon-link:hover { color: var(--ink); border-color: var(--ink); }
+/* About lives in the top nav on desktop — footer copy is mobile-only */
+.mx-colophon-about { display: none; }
+@media (max-width: 820px) {
+  .topnav-actions { display: none; }
+  .mx-colophon-about { display: inline; }
 }

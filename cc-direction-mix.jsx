@@ -143,6 +143,19 @@ function MixDirection({ drinks, filters, setFilters, density, layout, onOpen }) 
           and <em>small, legal, satisfying</em> acts of disobedience against drinks that cost more than a paperback.
           <br/><span className="muted">unaffiliated with any coffee conglomerate · all savings hypothetical until executed</span>
         </div>
+        <div className="mx-colophon-links">
+          <a
+            className="mx-colophon-link mx-colophon-about"
+            href="#about"
+            onClick={e => { e.preventDefault(); alert('Parody site. No affiliation. All savings hypothetical until executed.'); }}
+          >About</a>
+          <a
+            className="mx-colophon-link"
+            href="https://github.com/christag/cheap-coffee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >GitHub ↗</a>
+        </div>
       </footer>
     </div>
   );
